@@ -1,32 +1,17 @@
 package scenary;
 
-import gameframework.core.Drawable;
-import gameframework.core.DrawableImage;
-import gameframework.core.GameEntity;
-
 import java.awt.Canvas;
-import java.awt.Graphics;
-import java.awt.Point;
 
-public class Factory implements GameEntity, Drawable {
-	protected static DrawableImage image = null;
-	int x, y;
-	
+import soldier.core.Weapon;
+
+public class Factory extends Scenary{	
 	public Factory(Canvas defaultCanvas, int xx, int yy) {
-		image = new DrawableImage("images/Factory.png", defaultCanvas);
-		x = xx;
-		y = yy;
+		super(defaultCanvas, xx, yy, "images/Factory.png");
 	}
-	
+
 	@Override
-	public void draw(Graphics g) {
-		g.drawImage(image.getImage(), x, y, 16, 15,
-				null);
+	public Weapon getBonus() {
+		return null;
 	}
 	
-	public Point getPos() {
-		return (new Point(x, y));
-	}
-
-
 }

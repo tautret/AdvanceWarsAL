@@ -1,33 +1,17 @@
 package scenary;
 
-import gameframework.core.Drawable;
-import gameframework.core.DrawableImage;
-import gameframework.core.GameEntity;
-
 import java.awt.Canvas;
-import java.awt.Graphics;
-import java.awt.Point;
 
-public class Forest implements GameEntity, Drawable {
-	protected static DrawableImage image = null;
-	int x, y;
-	public static final int RENDERING_SIZE = 16;
-	
+import soldier.core.Weapon;
+
+public class Forest extends Scenary{	
 	public Forest(Canvas defaultCanvas, int xx, int yy) {
-		image = new DrawableImage("images/Forest.png", defaultCanvas);
-		x = xx;
-		y = yy;
+		super(defaultCanvas, xx, yy, "images/Forest.png");
 	}
-	
+
 	@Override
-	public void draw(Graphics g) {
-		g.drawImage(image.getImage(), x, y, RENDERING_SIZE, RENDERING_SIZE,
-				null);
+	public Weapon getBonus() {
+		return null;
 	}
 	
-	public Point getPos() {
-		return (new Point(x, y));
-	}
-
-
 }

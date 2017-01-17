@@ -1,34 +1,17 @@
 package scenary;
 
-import gameframework.core.Drawable;
-import gameframework.core.DrawableImage;
-import gameframework.core.GameEntity;
-
 import java.awt.Canvas;
-import java.awt.Graphics;
-import java.awt.Point;
 
-public class TRRoad implements GameEntity, Drawable {
-	protected static DrawableImage image = null;
-	int x, y;
-	public static final int RENDERING_SIZE = 16;
+import soldier.core.Weapon;
 
-	
+public class TRRoad extends Scenary{	
 	public TRRoad(Canvas defaultCanvas, int xx, int yy) {
-		image = new DrawableImage("images/TopRightRoad.png", defaultCanvas);
-		x = xx;
-		y = yy;
+		super(defaultCanvas, xx, yy, "images/TopRightRoad.png");
 	}
-	
+
 	@Override
-	public void draw(Graphics g) {
-		g.drawImage(image.getImage(), x, y, RENDERING_SIZE, RENDERING_SIZE,
-				null);
+	public Weapon getBonus() {
+		return null;
 	}
 	
-	public Point getPos() {
-		return (new Point(x, y));
-	}
-
-
 }
