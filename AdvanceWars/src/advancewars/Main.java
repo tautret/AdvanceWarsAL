@@ -8,7 +8,7 @@ import gameframework.core.GameLevel;
 public class Main {
 
 	public static void main(String[] args) {
-		GameDefaultImpl g = new AdvanceWarsDefaultImpl();
+		AdvanceWarsDefaultImpl g = new AdvanceWarsDefaultImpl();
 		ArrayList<GameLevel> levels = new ArrayList<>();
 		
 		levels.add(new GameLevelOne(g));

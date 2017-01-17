@@ -1,6 +1,7 @@
 package advancewars;
 
 import java.awt.Canvas;
+import java.awt.Frame;
 
 import gameframework.core.CanvasDefaultImpl;
 import gameframework.core.Game;
@@ -72,6 +73,8 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 	public GameLevelOne(Game g) {
 		super(g);
 		canvas = g.getCanvas();
+		canvas.setSize(SPRITE_SIZE*tab[0].length, SPRITE_SIZE*tab.length);
+		((Frame)canvas.getParent()).pack();
 	}
 
 	@Override
