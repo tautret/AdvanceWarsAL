@@ -3,8 +3,10 @@ package advancewars;
 import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.Menu;
 import java.awt.MenuBar;
@@ -17,7 +19,9 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+import javax.swing.border.TitledBorder;
 
 import gameframework.core.CanvasDefaultImpl;
 import gameframework.core.Game;
@@ -31,7 +35,7 @@ public class AdvanceWarsDefaultImpl implements Game, Observer{
 
 	protected CanvasDefaultImpl defaultCanvas = null;
 	protected ObservableValue<Integer> score[] = new ObservableValue[MAX_NUMBER_OF_PLAYER];
-	protected ObservableValue<Integer> life[] = new ObservableValue[MAX_NUMBER_OF_PLAYER];
+	protected ObservableValue<Integer> day[] = new ObservableValue[1];
 
 	// initialized before each level
 	protected ObservableValue<Boolean> endOfGame = null;
@@ -42,21 +46,23 @@ public class AdvanceWarsDefaultImpl implements Game, Observer{
 	protected int levelNumber;
 	protected ArrayList<GameLevel> gameLevels;
 
-	protected Label lifeText, scoreText;
+	protected Label dayText, scoreText;
 	protected Label information;
 	protected Label informationValue;
-	protected Label lifeValue, scoreValue;
+	protected Label dayValue, scoreValue;
 	protected Label currentLevel;
 	protected Label currentLevelValue;
 	
 	protected JPanel lateralPanel;
+	protected JPanel selectedItem;
+	protected JPanel currentItem;
 
 	public AdvanceWarsDefaultImpl() {
 		for (int i = 0; i < MAX_NUMBER_OF_PLAYER; ++i) {
 			score[i] = new ObservableValue<Integer>(0);
-			life[i] = new ObservableValue<Integer>(0);
 		}
-		lifeText = new Label("Lives:");
+		day[0] = new ObservableValue<Integer>(0);
+		dayText = new Label("Day:");
 		scoreText = new Label("Score:");
 		information = new Label("State:");
 		informationValue = new Label("Playing");
@@ -74,6 +80,7 @@ public class AdvanceWarsDefaultImpl implements Game, Observer{
 		defaultCanvas = new CanvasDefaultImpl();
 		f.add(defaultCanvas);
 		f.add(c, BorderLayout.NORTH);
+		f.add(createBorderPanel(),BorderLayout.EAST);
 		f.pack();
 		f.setVisible(true);
 
@@ -83,6 +90,21 @@ public class AdvanceWarsDefaultImpl implements Game, Observer{
 				System.exit(0);
 			}
 		});
+	}
+	
+	private Container createBorderPanel(){
+		JPanel p = new JPanel(new GridLayout(2,1));
+		selectedItem = new JPanel();
+		TitledBorder selectedtitle = BorderFactory.createTitledBorder("Item Selectionné");
+		selectedItem.setPreferredSize(new Dimension(200, 200));
+		selectedItem.setBorder(selectedtitle);
+		currentItem = new JPanel();
+		TitledBorder currentTitle = BorderFactory.createTitledBorder("Item Actuel");
+		currentItem.setPreferredSize(new Dimension(200,200));
+		currentItem.setBorder(currentTitle);
+		p.add(selectedItem);
+		p.add(currentItem);
+		return p;
 	}
 	
 	private void createMenuBar() {
@@ -142,11 +164,11 @@ public class AdvanceWarsDefaultImpl implements Game, Observer{
 		JPanel c = new JPanel();
 		GridBagLayout layout = new GridBagLayout();
 		c.setLayout(layout);
-		lifeValue = new Label(Integer.toString(life[0].getValue()));
+		dayValue = new Label(Integer.toString(day[0].getValue()));
 		scoreValue = new Label(Integer.toString(score[0].getValue()));
 		currentLevelValue = new Label(Integer.toString(levelNumber));
-		c.add(lifeText);
-		c.add(lifeValue);
+		c.add(dayText);
+		c.add(dayValue);
 		c.add(scoreText);
 		c.add(scoreValue);
 		c.add(currentLevel);
@@ -163,10 +185,10 @@ public class AdvanceWarsDefaultImpl implements Game, Observer{
 	public void start() {
 		for (int i = 0; i < MAX_NUMBER_OF_PLAYER; ++i) {
 			score[i].addObserver(this);
-			life[i].addObserver(this);
-			life[i].setValue(NUMBER_OF_LIVES);
 			score[i].setValue(0);
 		}
+		day[0].addObserver(this);
+		day[0].setValue(0);
 		levelNumber = 0;
 		for (GameLevel level : gameLevels) {
 			endOfGame = new ObservableValue<Boolean>(false);
@@ -210,7 +232,7 @@ public class AdvanceWarsDefaultImpl implements Game, Observer{
 	}
 
 	public ObservableValue<Integer>[] life() {
-		return life;
+		return day;
 	}
 
 	public ObservableValue<Boolean> endOfGame() {
@@ -229,10 +251,10 @@ public class AdvanceWarsDefaultImpl implements Game, Observer{
 				currentPlayedLevel.end();
 			}
 		} else {
-			for (ObservableValue<Integer> lifeObservable : life) {
+			for (ObservableValue<Integer> lifeObservable : day) {
 				if (o == lifeObservable) {
 					int lives = ((ObservableValue<Integer>) o).getValue();
-					lifeValue.setText(Integer.toString(lives));
+					dayValue.setText(Integer.toString(lives));
 					if (lives == 0) {
 						informationValue.setText("Defeat");
 						currentPlayedLevel.interrupt();

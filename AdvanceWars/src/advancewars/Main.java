@@ -2,7 +2,6 @@ package advancewars;
 
 import java.util.ArrayList;
 
-import gameframework.core.GameDefaultImpl;
 import gameframework.core.GameLevel;
 
 public class Main {
