@@ -35,26 +35,25 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 	// 16 : H-River ; 17 : V-River ; 18 : Bottom Left River ; 19 : Top Right
 	// River
 	static int[][] tab = {
-			{ 2, 2, 2, 1, 1, 1, 1, 1, 17, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1 },
-			{ 3, 5, 1, 5, 0, 4, 0, 4, 17, 1, 0, 0, 0, 1, 1, 1, 0, 4, 4, 4, 0 },
-			{ 3, 1, 10, 7, 9, 7, 7, 7, 14, 7, 7, 7, 0, 7, 7, 7, 7, 7, 7, 7, 7 },
-			{ 1, 5, 6, 5, 6, 4, 0, 4, 14, 0, 0, 0, 1, 2, 2, 1, 6, 0, 0, 0, 1 },
-			{ 1, 0, 6, 0, 6, 0, 0, 1, 14, 0, 0, 0, 1, 1, 3, 1, 0, 0, 0, 1, 3 },
-			{ 1, 5, 6, 5, 6, 1, 0, 1, 14, 0, 0, 0, 0, 1, 3, 1, 6, 1, 0, 2, 3 },
-			{ 2, 0, 12, 7, 13, 0, 1, 2, 14, 1, 0, 0, 0, 0, 1, 0, 1, 2, 1, 3, 3 },
-			{ 3, 1, 2, 1, 0, 3, 2, 3, 14, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3 },
-			{ 3, 1, 3, 2, 4, 3, 3, 1, 14, 1, 0, 2, 1, 0, 0, 1, 5, 0, 0, 0, 0 },
-			{ 0, 5, 3, 3, 2, 4, 1, 0, 18, 19, 0, 0, 1, 0, 0, 4, 6, 4, 0, 0, 1 },
-			{ 2, 1, 3, 1, 0, 0, 0, 0, 1, 18, 16, 16, 16, 16, 16, 16, 15, 16,
-					19, 1, 1 },
-			{ 3, 1, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 6, 1, 18, 17, 17 },
+			{ 2, 2, 2, 1, 1, 1, 1, 1,17, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1 },
+			{ 3, 5, 1, 5, 0, 4, 0, 4,17, 1, 0, 0, 0, 1, 1, 1, 0, 4, 4, 4, 0 },
+			{ 3, 1,10, 7, 9, 7, 7, 7,14, 7, 7, 7, 0, 7, 7, 7, 7, 7, 7, 7, 7 },
+			{ 1, 5, 6, 5, 6, 4, 0, 4,17, 0, 0, 0, 1, 2, 2, 1, 6, 0, 0, 0, 1 },
+			{ 1, 0, 6, 0, 6, 0, 0, 1,17, 0, 0, 0, 1, 1, 3, 1, 0, 0, 0, 1, 3 },
+			{ 1, 5, 6, 5, 6, 1, 0, 1,17, 0, 0, 0, 0, 1, 3, 1, 6, 1, 0, 2, 3 },
+			{ 2, 0,12, 7,13, 0, 1, 2,17, 1, 0, 0, 0, 0, 1, 0, 1, 2, 1, 3, 3 },
+			{ 3, 1, 2, 1, 0, 3, 2, 3,17, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3 },
+			{ 3, 1, 3, 2, 4, 3, 3, 1,17, 1, 0, 2, 1, 0, 0, 1, 5, 0, 0, 0, 0 },
+			{ 0, 5, 3, 3, 2, 4, 1, 0,18, 19, 0, 0, 1, 0, 0, 4, 6, 4, 0, 0, 1 },
+			{ 2, 1, 3, 1, 0, 0, 0, 0, 1, 18,16,16,16,16,16,16,15,16,19, 1, 1 },
+			{ 3, 1, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 6, 1, 18,16,16 },
 			{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 1, 6, 0, 0, 0, 1 },
 			{ 2, 5, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 5 },
 			{ 1, 0, 0, 0, 0, 5, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 6, 0, 0, 0, 1 },
 			{ 1, 1, 0, 0, 10, 7, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 1, 1 },
 			{ 6, 6, 6, 5, 6, 4, 6, 5, 6, 6, 6, 6, 6, 6, 6, 5, 8, 5, 1, 2, 2 } };
 
-	public static final int SPRITE_SIZE = 16;
+	public static final int SPRITE_SIZE = 32;
 
 	public GameLevelOne(Game g) {
 		super(g);
@@ -64,16 +63,20 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 	@Override
 	protected void init() {
 		// TODO Auto-generated method stub
-		
-//		OverlapProcessor overlapProcessor = new OverlapProcessorDefaultImpl();
-//
-//		MoveBlockerChecker moveBlockerChecker = new MoveBlockerCheckerDefaultImpl();
-//		moveBlockerChecker.setMoveBlockerRules(new PacmanMoveBlockers());
-//		
-//		PacmanOverlapRules overlapRules = new PacmanOverlapRules(new Point(14 * SPRITE_SIZE, 17 * SPRITE_SIZE),
-//				new Point(14 * SPRITE_SIZE, 15 * SPRITE_SIZE), life[0], score[0], endOfGame);
-//		overlapProcessor.setOverlapRules(overlapRules);
-//		
+
+		// OverlapProcessor overlapProcessor = new
+		// OverlapProcessorDefaultImpl();
+		//
+		// MoveBlockerChecker moveBlockerChecker = new
+		// MoveBlockerCheckerDefaultImpl();
+		// moveBlockerChecker.setMoveBlockerRules(new PacmanMoveBlockers());
+		//
+		// PacmanOverlapRules overlapRules = new PacmanOverlapRules(new Point(14
+		// * SPRITE_SIZE, 17 * SPRITE_SIZE),
+		// new Point(14 * SPRITE_SIZE, 15 * SPRITE_SIZE), life[0], score[0],
+		// endOfGame);
+		// overlapProcessor.setOverlapRules(overlapRules);
+		//
 		universe = new GameUniverseDefaultImpl(moveBlockerChecker,
 				overlapProcessor);
 		overlapRules.setUniverse(universe);
@@ -166,45 +169,46 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 				}
 			}
 		}
-		
-		/* A Remplacer par un curseur */
-		
-//		Pacman myPac = new Pacman(canvas);
-//		GameMovableDriverDefaultImpl pacDriver = new GameMovableDriverDefaultImpl();
-//		MoveStrategyKeyboard keyStr = new MoveStrategyKeyboard();
-//		pacDriver.setStrategy(keyStr);
-//		pacDriver.setmoveBlockerChecker(moveBlockerChecker);
-//		canvas.addKeyListener(keyStr);
-//		myPac.setDriver(pacDriver);
-//		myPac.setPosition(new Point(14 * SPRITE_SIZE, 17 * SPRITE_SIZE));
-//		universe.addGameEntity(myPac);
 
-		// Armée Rouge
-//		Ghost myGhost;
-//		for (int t = 0; t < NUMBER_OF_GHOSTS; ++t) {
-//			GameMovableDriverDefaultImpl ghostDriv = new GhostMovableDriver();
-//			MoveStrategyRandom ranStr = new MoveStrategyRandom();
-//			ghostDriv.setStrategy(ranStr);
-//			ghostDriv.setmoveBlockerChecker(moveBlockerChecker);
-//			myGhost = new Ghost(canvas);
-//			myGhost.setDriver(ghostDriv);
-//			myGhost.setPosition(new Point(14 * SPRITE_SIZE, 15 * SPRITE_SIZE));
-//			universe.addGameEntity(myGhost);
-//			(overlapRules).addGhost(myGhost);
-//		}
-		
-		// Armée Bleu
-//		Ghost myGhost;
-//		for (int t = 0; t < NUMBER_OF_GHOSTS; ++t) {
-//			GameMovableDriverDefaultImpl ghostDriv = new GhostMovableDriver();
-//			MoveStrategyRandom ranStr = new MoveStrategyRandom();
-//			ghostDriv.setStrategy(ranStr);
-//			ghostDriv.setmoveBlockerChecker(moveBlockerChecker);
-//			myGhost = new Ghost(canvas);
-//			myGhost.setDriver(ghostDriv);
-//			myGhost.setPosition(new Point(14 * SPRITE_SIZE, 15 * SPRITE_SIZE));
-//			universe.addGameEntity(myGhost);
-//			(overlapRules).addGhost(myGhost);
-//		}
+		/* A Remplacer par un curseur */
+
+		// Pacman myPac = new Pacman(canvas);
+		// GameMovableDriverDefaultImpl pacDriver = new
+		// GameMovableDriverDefaultImpl();
+		// MoveStrategyKeyboard keyStr = new MoveStrategyKeyboard();
+		// pacDriver.setStrategy(keyStr);
+		// pacDriver.setmoveBlockerChecker(moveBlockerChecker);
+		// canvas.addKeyListener(keyStr);
+		// myPac.setDriver(pacDriver);
+		// myPac.setPosition(new Point(14 * SPRITE_SIZE, 17 * SPRITE_SIZE));
+		// universe.addGameEntity(myPac);
+
+		// Armï¿½e Rouge
+		// Ghost myGhost;
+		// for (int t = 0; t < NUMBER_OF_GHOSTS; ++t) {
+		// GameMovableDriverDefaultImpl ghostDriv = new GhostMovableDriver();
+		// MoveStrategyRandom ranStr = new MoveStrategyRandom();
+		// ghostDriv.setStrategy(ranStr);
+		// ghostDriv.setmoveBlockerChecker(moveBlockerChecker);
+		// myGhost = new Ghost(canvas);
+		// myGhost.setDriver(ghostDriv);
+		// myGhost.setPosition(new Point(14 * SPRITE_SIZE, 15 * SPRITE_SIZE));
+		// universe.addGameEntity(myGhost);
+		// (overlapRules).addGhost(myGhost);
+		// }
+
+		// Armï¿½e Bleu
+		// Ghost myGhost;
+		// for (int t = 0; t < NUMBER_OF_GHOSTS; ++t) {
+		// GameMovableDriverDefaultImpl ghostDriv = new GhostMovableDriver();
+		// MoveStrategyRandom ranStr = new MoveStrategyRandom();
+		// ghostDriv.setStrategy(ranStr);
+		// ghostDriv.setmoveBlockerChecker(moveBlockerChecker);
+		// myGhost = new Ghost(canvas);
+		// myGhost.setDriver(ghostDriv);
+		// myGhost.setPosition(new Point(14 * SPRITE_SIZE, 15 * SPRITE_SIZE));
+		// universe.addGameEntity(myGhost);
+		// (overlapRules).addGhost(myGhost);
+		// }
 	}
 }
