@@ -2,7 +2,9 @@ package advancewars;
 
 import java.awt.Canvas;
 import java.awt.Frame;
+import java.awt.Point;
 
+import advancewars.StrategyKeyboard.MoveCursorKeyboard;
 import gameframework.core.CanvasDefaultImpl;
 import gameframework.core.Game;
 import gameframework.core.GameLevelDefaultImpl;
@@ -105,8 +107,7 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 			}
 		});
 		
-		GameMovableDriverDefaultImpl pacDriver = new GameMovableDriverDefaultImpl();
-		MoveStrategyKeyboard keyStr = new MoveStrategyKeyboard();
+		MoveCursorKeyboard keyStr = new MoveCursorKeyboard();
 		canvas.addKeyListener(keyStr);
 
 		gameBoard = new GameUniverseViewPortDefaultImpl(canvas, universe);
@@ -198,18 +199,15 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 			}
 		}
 
-		/* A Remplacer par un curseur */
+		Cursor myCursor = new Cursor(canvas);
+		GameMovableDriverDefaultImpl cursorDriver = new GameMovableDriverDefaultImpl();
+		cursorDriver.setStrategy(keyStr);
+		cursorDriver.setmoveBlockerChecker(moveBlockerChecker);
+		canvas.addKeyListener(keyStr);
+		myCursor.setDriver(cursorDriver);
+		myCursor.setPosition(new Point((10 * SPRITE_SIZE-5), 5 * SPRITE_SIZE-6));
+		universe.addGameEntity(myCursor);
 
-		// Pacman myPac = new Pacman(canvas);
-		// GameMovableDriverDefaultImpl pacDriver = new
-		// GameMovableDriverDefaultImpl();
-		// MoveStrategyKeyboard keyStr = new MoveStrategyKeyboard();
-		// pacDriver.setStrategy(keyStr);
-		// pacDriver.setmoveBlockerChecker(moveBlockerChecker);
-		// canvas.addKeyListener(keyStr);
-		// myPac.setDriver(pacDriver);
-		// myPac.setPosition(new Point(14 * SPRITE_SIZE, 17 * SPRITE_SIZE));
-		// universe.addGameEntity(myPac);
 
 		// Arm�e Rouge
 		// Ghost myGhost;
