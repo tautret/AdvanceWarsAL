@@ -1,26 +1,40 @@
 package advancewars;
 
 import java.awt.Canvas;
-import java.awt.Point;
 
-import pacman.entity.Ghost;
-import pacman.entity.Pacman;
-import pacman.rule.GhostMovableDriver;
-import pacman.rule.PacmanMoveBlockers;
-import pacman.rule.PacmanOverlapRules;
-import scenary.*;
 import gameframework.core.CanvasDefaultImpl;
 import gameframework.core.Game;
 import gameframework.core.GameLevelDefaultImpl;
 import gameframework.core.GameMovableDriverDefaultImpl;
+import gameframework.core.GameUniverse;
 import gameframework.core.GameUniverseDefaultImpl;
 import gameframework.core.GameUniverseViewPortDefaultImpl;
 import gameframework.moves_rules.MoveBlockerChecker;
 import gameframework.moves_rules.MoveBlockerCheckerDefaultImpl;
 import gameframework.moves_rules.MoveStrategyKeyboard;
-import gameframework.moves_rules.MoveStrategyRandom;
 import gameframework.moves_rules.OverlapProcessor;
 import gameframework.moves_rules.OverlapProcessorDefaultImpl;
+import gameframework.moves_rules.OverlapRulesApplierDefaultImpl;
+import scenary.BLRiver;
+import scenary.BLRoad;
+import scenary.BMountain;
+import scenary.BRRoad;
+import scenary.Building;
+import scenary.CrossDownRoad;
+import scenary.CrossUpRoad;
+import scenary.Factory;
+import scenary.Forest;
+import scenary.HBridge;
+import scenary.HRiver;
+import scenary.HRoad;
+import scenary.Land;
+import scenary.SMountain;
+import scenary.TLRoad;
+import scenary.TRRiver;
+import scenary.TRRoad;
+import scenary.VBridge;
+import scenary.VRiver;
+import scenary.VRoad;
 
 public class GameLevelOne extends GameLevelDefaultImpl {
 
@@ -51,7 +65,7 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 			{ 2, 5, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 5 },
 			{ 1, 0, 0, 0, 0, 5, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 6, 0, 0, 0, 1 },
 			{ 1, 1, 0, 0, 10, 7, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 1, 1 },
-			{ 6, 6, 6, 5, 6, 4, 6, 5, 6, 6, 6, 6, 6, 6, 6, 5, 8, 5, 1, 2, 2 } };
+			{ 7, 7, 7, 5, 13, 4, 12, 5, 7, 7, 7, 7, 7, 7, 7, 5, 8, 5, 1, 2, 2 } };
 
 	public static final int SPRITE_SIZE = 32;
 
@@ -75,18 +89,29 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 		// * SPRITE_SIZE, 17 * SPRITE_SIZE),
 		// new Point(14 * SPRITE_SIZE, 15 * SPRITE_SIZE), life[0], score[0],
 		// endOfGame);
-		// overlapProcessor.setOverlapRules(overlapRules);
-		//
+		OverlapProcessor overlapProcessor = new OverlapProcessorDefaultImpl();
+		MoveBlockerChecker moveBlockerChecker = new MoveBlockerCheckerDefaultImpl();
 		universe = new GameUniverseDefaultImpl(moveBlockerChecker,
 				overlapProcessor);
-		overlapRules.setUniverse(universe);
+		overlapProcessor.setOverlapRules(new OverlapRulesApplierDefaultImpl() {
+			protected GameUniverse universe;
+			@Override
+			public void setUniverse(GameUniverse universe) {
+				this.universe = universe;
+				
+			}
+		});
+		
+		GameMovableDriverDefaultImpl pacDriver = new GameMovableDriverDefaultImpl();
+		MoveStrategyKeyboard keyStr = new MoveStrategyKeyboard();
+		canvas.addKeyListener(keyStr);
 
 		gameBoard = new GameUniverseViewPortDefaultImpl(canvas, universe);
 		((CanvasDefaultImpl) canvas).setDrawingGameBoard(gameBoard);
 		// Filling up the universe with basic non movable entities and inclusion
 		// in the universe
-		for (int i = 0; i < 16; ++i) {
-			for (int j = 0; j < 21; ++j) {
+		for (int i = 0; i < tab.length; ++i) {
+			for (int j = 0; j < tab[i].length; ++j) {
 				if (tab[i][j] == 0) {
 					universe.addGameEntity(new Land(canvas, j * SPRITE_SIZE, i
 							* SPRITE_SIZE));

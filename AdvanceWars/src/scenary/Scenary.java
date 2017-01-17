@@ -12,9 +12,9 @@ import soldier.core.Unit;
 import soldier.core.Weapon;
 
 public abstract class Scenary implements Drawable, GameEntity {
-	protected static DrawableImage image = null;
+	protected  DrawableImage image = null;
 	int x, y;
-	public static final int RENDERING_SIZE = 16;
+	public static final int RENDERING_SIZE = 32;
 	public Unit unit;
 	
 	
