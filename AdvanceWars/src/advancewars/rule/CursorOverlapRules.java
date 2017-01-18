@@ -8,7 +8,7 @@ import advancewars.Cursor;
 import gameframework.core.GameUniverse;
 import gameframework.core.Overlappable;
 import gameframework.moves_rules.OverlapRulesApplierDefaultImpl;
-import scenary.Scenary;
+import advancewars.scenary.Scenary;
 
 public class CursorOverlapRules extends OverlapRulesApplierDefaultImpl {
 	protected GameUniverse universe;

@@ -4,9 +4,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import observer_util.Observer;
-import scenary.Scenary;
+import advancewars.scenary.Scenary;
 
-public class MyPanel extends JPanel implements Observer<Scenary> {
+public class MyPanel extends JPanel implements Observer<Scenary>{
 	
 	JLabel label = new JLabel();
 	
