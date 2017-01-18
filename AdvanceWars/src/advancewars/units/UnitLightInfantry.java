@@ -14,15 +14,15 @@ import java.awt.Rectangle;
 
 import soldier.units.Jeep;
 
-public class UnitJeep extends GameMovable implements Drawable, GameEntity, Overlappable{
+public class UnitLightInfantry extends GameMovable implements Drawable, GameEntity, Overlappable{
 	protected final SpriteManager spriteManager;
 	protected Jeep myJeep;
 
 	public static final int RENDERING_SIZE = 32;
 	protected boolean movable = true;
 
-	public UnitJeep(Canvas c,String name) {
-		spriteManager = new SpriteManagerDefaultImpl("images/Jeep-"+name+".png",
+	public UnitLightInfantry(Canvas c, String name) {
+		spriteManager = new SpriteManagerDefaultImpl("images/"+name+".png",
 				c, RENDERING_SIZE, 4);
 		spriteManager.setTypes(
 				//

@@ -39,13 +39,13 @@ public class Cursor extends GameMovable implements Drawable, GameEntity, Overlap
 	}
 
 	public Rectangle getBoundingBox() {
-		return (new Rectangle(0, 0, RENDERING_SIZE, RENDERING_SIZE));
+		return (new Rectangle(0, 0, RENDERING_SIZE/2, RENDERING_SIZE/2));
 	}
 	
 	@Override
 	public void oneStepMove() {
 		super.oneStepMove();
-		if ((getPosition().getX()+5)%32 == 0 && (getPosition().getY()+6)%32 ==0){
+		if ((getPosition().getX()+5)%(RENDERING_SIZE/2) == 0 && (getPosition().getY()+6)%(RENDERING_SIZE/2) ==0){
 			SpeedVector m = getDriver().getSpeedVector(this);
 			m.setDirection(new Point(0,0));
 		}
