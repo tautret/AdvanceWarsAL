@@ -54,8 +54,8 @@ public class AdvanceWarsDefaultImpl implements Game, Observer{
 	protected Label currentLevelValue;
 	
 	protected JPanel lateralPanel;
-	protected JPanel selectedItem;
-	protected JPanel currentItem;
+	protected MyPanel selectedItem;
+	protected MyPanel currentItem;
 
 	public AdvanceWarsDefaultImpl() {
 		for (int i = 0; i < MAX_NUMBER_OF_PLAYER; ++i) {
@@ -94,11 +94,11 @@ public class AdvanceWarsDefaultImpl implements Game, Observer{
 	
 	private Container createBorderPanel(){
 		JPanel p = new JPanel(new GridLayout(2,1));
-		selectedItem = new JPanel();
+		selectedItem = new MyPanel();
 		TitledBorder selectedtitle = BorderFactory.createTitledBorder("Item Selectionné");
 		selectedItem.setPreferredSize(new Dimension(200, 200));
 		selectedItem.setBorder(selectedtitle);
-		currentItem = new JPanel();
+		currentItem = new MyPanel();
 		TitledBorder currentTitle = BorderFactory.createTitledBorder("Item Actuel");
 		currentItem.setPreferredSize(new Dimension(200,200));
 		currentItem.setBorder(currentTitle);

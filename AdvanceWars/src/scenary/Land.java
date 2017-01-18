@@ -1,6 +1,8 @@
 package scenary;
 
 import java.awt.Canvas;
+import java.awt.Point;
+import java.awt.Rectangle;
 
 import soldier.core.Weapon;
 

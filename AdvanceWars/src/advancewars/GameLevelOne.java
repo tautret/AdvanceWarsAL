@@ -3,10 +3,15 @@ package advancewars;
 import java.awt.Canvas;
 import java.awt.Frame;
 import java.awt.Point;
+import java.util.Iterator;
+import java.util.Observable;
+import java.util.Observer;
 
 import advancewars.StrategyKeyboard.MoveCursorKeyboard;
+import advancewars.rule.CursorOverlapRules;
 import gameframework.core.CanvasDefaultImpl;
 import gameframework.core.Game;
+import gameframework.core.GameEntity;
 import gameframework.core.GameLevelDefaultImpl;
 import gameframework.core.GameMovableDriverDefaultImpl;
 import gameframework.core.GameUniverse;
@@ -14,7 +19,6 @@ import gameframework.core.GameUniverseDefaultImpl;
 import gameframework.core.GameUniverseViewPortDefaultImpl;
 import gameframework.moves_rules.MoveBlockerChecker;
 import gameframework.moves_rules.MoveBlockerCheckerDefaultImpl;
-import gameframework.moves_rules.MoveStrategyKeyboard;
 import gameframework.moves_rules.OverlapProcessor;
 import gameframework.moves_rules.OverlapProcessorDefaultImpl;
 import gameframework.moves_rules.OverlapRulesApplierDefaultImpl;
@@ -32,6 +36,7 @@ import scenary.HRiver;
 import scenary.HRoad;
 import scenary.Land;
 import scenary.SMountain;
+import scenary.Scenary;
 import scenary.TLRoad;
 import scenary.TRRiver;
 import scenary.TRRoad;
@@ -39,7 +44,7 @@ import scenary.VBridge;
 import scenary.VRiver;
 import scenary.VRoad;
 
-public class GameLevelOne extends GameLevelDefaultImpl {
+public class GameLevelOne extends GameLevelDefaultImpl{
 
 	Canvas canvas;
 
@@ -98,14 +103,9 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 		MoveBlockerChecker moveBlockerChecker = new MoveBlockerCheckerDefaultImpl();
 		universe = new GameUniverseDefaultImpl(moveBlockerChecker,
 				overlapProcessor);
-		overlapProcessor.setOverlapRules(new OverlapRulesApplierDefaultImpl() {
-			protected GameUniverse universe;
-			@Override
-			public void setUniverse(GameUniverse universe) {
-				this.universe = universe;
-				
-			}
-		});
+		CursorOverlapRules cursorOverlap = new CursorOverlapRules(new Point(0,0));
+		cursorOverlap.setUniverse(universe);
+		overlapProcessor.setOverlapRules(cursorOverlap);
 		
 		MoveCursorKeyboard keyStr = new MoveCursorKeyboard();
 		canvas.addKeyListener(keyStr);
@@ -116,87 +116,91 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 		// in the universe
 		for (int i = 0; i < tab.length; ++i) {
 			for (int j = 0; j < tab[i].length; ++j) {
+				Scenary s = null;
 				if (tab[i][j] == 0) {
-					universe.addGameEntity(new Land(canvas, j * SPRITE_SIZE, i
-							* SPRITE_SIZE));
+					s = new Land(canvas, j * SPRITE_SIZE, i
+							* SPRITE_SIZE);
 				}
 				if (tab[i][j] == 1) {
-					universe.addGameEntity(new Forest(canvas, j * SPRITE_SIZE,
-							i * SPRITE_SIZE));
+					s = new Forest(canvas, j * SPRITE_SIZE,
+							i * SPRITE_SIZE);
 				}
 				if (tab[i][j] == 2) {
-					universe.addGameEntity(new SMountain(canvas, j
-							* SPRITE_SIZE, i * SPRITE_SIZE));
+					s = new SMountain(canvas, j
+							* SPRITE_SIZE, i * SPRITE_SIZE);
 				}
 				if (tab[i][j] == 3) {
-					universe.addGameEntity(new BMountain(canvas, j
-							* SPRITE_SIZE, i * SPRITE_SIZE));
+					s = new BMountain(canvas, j
+							* SPRITE_SIZE, i * SPRITE_SIZE);
 				}
 				if (tab[i][j] == 4) {
-					universe.addGameEntity(new Building(canvas,
-							j * SPRITE_SIZE, i * SPRITE_SIZE));
+					s = new Building(canvas,
+							j * SPRITE_SIZE, i * SPRITE_SIZE);
 				}
 				if (tab[i][j] == 5) {
-					universe.addGameEntity(new Factory(canvas, j * SPRITE_SIZE,
-							i * SPRITE_SIZE));
+					s = new Factory(canvas, j * SPRITE_SIZE,
+							i * SPRITE_SIZE);
 				}
 				if (tab[i][j] == 6) {
-					universe.addGameEntity(new VRoad(canvas, j * SPRITE_SIZE, i
-							* SPRITE_SIZE));
+					s = new VRoad(canvas, j * SPRITE_SIZE, i
+							* SPRITE_SIZE);
 				}
 				if (tab[i][j] == 7) {
-					universe.addGameEntity(new HRoad(canvas, j * SPRITE_SIZE, i
-							* SPRITE_SIZE));
+					s = new HRoad(canvas, j * SPRITE_SIZE, i
+							* SPRITE_SIZE);
 				}
 				if (tab[i][j] == 8) {
-					universe.addGameEntity(new CrossUpRoad(canvas, j
-							* SPRITE_SIZE, i * SPRITE_SIZE));
+					s = new CrossUpRoad(canvas, j
+							* SPRITE_SIZE, i * SPRITE_SIZE);
 				}
 				if (tab[i][j] == 9) {
-					universe.addGameEntity(new CrossDownRoad(canvas, j
-							* SPRITE_SIZE, i * SPRITE_SIZE));
+					s = new CrossDownRoad(canvas, j
+							* SPRITE_SIZE, i * SPRITE_SIZE);
 				}
 				if (tab[i][j] == 10) {
-					universe.addGameEntity(new TLRoad(canvas, j * SPRITE_SIZE,
-							i * SPRITE_SIZE));
+					s = new TLRoad(canvas, j * SPRITE_SIZE,
+							i * SPRITE_SIZE);
 				}
 				if (tab[i][j] == 11) {
-					universe.addGameEntity(new TRRoad(canvas, j * SPRITE_SIZE,
-							i * SPRITE_SIZE));
+					s = new TRRoad(canvas, j * SPRITE_SIZE,
+							i * SPRITE_SIZE);
 				}
 				if (tab[i][j] == 12) {
-					universe.addGameEntity(new BLRoad(canvas, j * SPRITE_SIZE,
-							i * SPRITE_SIZE));
+					s = new BLRoad(canvas, j * SPRITE_SIZE,
+							i * SPRITE_SIZE);
 				}
 				if (tab[i][j] == 13) {
-					universe.addGameEntity(new BRRoad(canvas, j * SPRITE_SIZE,
-							i * SPRITE_SIZE));
+					s = new BRRoad(canvas, j * SPRITE_SIZE,
+							i * SPRITE_SIZE);
 				}
 				if (tab[i][j] == 14) {
-					universe.addGameEntity(new HBridge(canvas, j * SPRITE_SIZE,
-							i * SPRITE_SIZE));
+					s = new HBridge(canvas, j * SPRITE_SIZE,
+							i * SPRITE_SIZE);
 				}
 				if (tab[i][j] == 15) {
-					universe.addGameEntity(new VBridge(canvas, j * SPRITE_SIZE,
-							i * SPRITE_SIZE));
+					s = new VBridge(canvas, j * SPRITE_SIZE,
+							i * SPRITE_SIZE);
 				}
 				if (tab[i][j] == 16) {
-					universe.addGameEntity(new HRiver(canvas, j * SPRITE_SIZE,
-							i * SPRITE_SIZE));
+					s = new HRiver(canvas, j * SPRITE_SIZE,
+							i * SPRITE_SIZE);
 				}
 				if (tab[i][j] == 17) {
-					universe.addGameEntity(new VRiver(canvas, j * SPRITE_SIZE,
-							i * SPRITE_SIZE));
+					s = new VRiver(canvas, j * SPRITE_SIZE,
+							i * SPRITE_SIZE);
 				}
 				if (tab[i][j] == 18) {
-					universe.addGameEntity(new BLRiver(canvas, j * SPRITE_SIZE,
-							i * SPRITE_SIZE));
+					s = new BLRiver(canvas, j * SPRITE_SIZE,
+							i * SPRITE_SIZE);
 				}
 				if (tab[i][j] == 19) {
-					universe.addGameEntity(new TRRiver(canvas, j * SPRITE_SIZE,
-							i * SPRITE_SIZE));
+					s = new TRRiver(canvas, j * SPRITE_SIZE,
+							i * SPRITE_SIZE);
 				}
+				s.addObserver(((AdvanceWarsDefaultImpl)g).currentItem);
+				universe.addGameEntity(s);
 			}
+			
 		}
 
 		Cursor myCursor = new Cursor(canvas);
@@ -207,7 +211,7 @@ public class GameLevelOne extends GameLevelDefaultImpl {
 		myCursor.setDriver(cursorDriver);
 		myCursor.setPosition(new Point((10 * SPRITE_SIZE-5), 5 * SPRITE_SIZE-6));
 		universe.addGameEntity(myCursor);
-
+		
 
 		// Arm�e Rouge
 		// Ghost myGhost;

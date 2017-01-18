@@ -1,17 +1,22 @@
 package scenary;
 
-import gameframework.core.Drawable;
-import gameframework.core.DrawableImage;
-import gameframework.core.GameEntity;
-
 import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Rectangle;
 
+import gameframework.core.Drawable;
+import gameframework.core.DrawableImage;
+import gameframework.core.GameEntity;
+import gameframework.core.Movable;
+import gameframework.core.Overlappable;
+import gameframework.moves_rules.SpeedVector;
+import gameframework.moves_rules.SpeedVectorDefaultImpl;
+import observer_util.ObservableAbstract;
 import soldier.core.Unit;
 import soldier.core.Weapon;
 
-public abstract class Scenary implements Drawable, GameEntity {
+public abstract class Scenary extends ObservableAbstract<Scenary> implements Drawable, GameEntity, Overlappable, Movable {
 	protected  DrawableImage image = null;
 	int x, y;
 	public static final int RENDERING_SIZE = 32;
@@ -46,6 +51,27 @@ public abstract class Scenary implements Drawable, GameEntity {
 		unit = null;
 	}
 	
+	@Override
+	public Point getPosition() {
+		return this.getPos();
+	}
 
+	@Override
+	public Rectangle getBoundingBox() {
+		return new Rectangle(0,0,RENDERING_SIZE,RENDERING_SIZE);
+	}
+	
+
+	public SpeedVector getSpeedVector(){
+		return SpeedVectorDefaultImpl.createNullVector();
+	}
+
+	public void setSpeedVector(SpeedVector m){
+		
+	}
+
+	public void oneStepMove(){
+		
+	}
 
 }
