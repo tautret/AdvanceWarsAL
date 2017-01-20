@@ -16,7 +16,7 @@ import java.awt.Rectangle;
 
 import observer_util.ObservableAbstract;
 
-public abstract class Units extends ObservableAbstract<Units> implements
+public abstract class Units extends ObservableAbstract<GameEntity> implements
 		Drawable, GameEntity, Overlappable, Movable {
 	
 	protected final SpriteManager spriteManager;
@@ -83,5 +83,10 @@ public abstract class Units extends ObservableAbstract<Units> implements
 		spriteManager.setType(spriteType);
 		spriteManager.draw(g, getPosition());
 	}
+
+	public SpriteManager getSpriteManager() {
+		return spriteManager;
+	}
+	
 
 }

@@ -100,7 +100,7 @@ public class AdvanceWarsDefaultImpl implements Game, Observer{
 		selectedItem.setBorder(selectedtitle);
 		currentItem = new MyPanel();
 		TitledBorder currentTitle = BorderFactory.createTitledBorder("Item Actuel");
-		currentItem.setPreferredSize(new Dimension(200,200));
+		currentItem.setPreferredSize(new Dimension(250,200));
 		currentItem.setBorder(currentTitle);
 		p.add(selectedItem);
 		p.add(currentItem);
