@@ -47,6 +47,7 @@ import advancewars.units.UnitLightTank;
 import advancewars.units.Units;
 
 
+
 public class GameLevelOne extends GameLevelDefaultImpl{
 
 	Canvas canvas;
@@ -300,10 +301,10 @@ public class GameLevelOne extends GameLevelDefaultImpl{
 		
 
 		
+
 		//Army Red
 		templateArmy("Red");
 		
-
 		//Army Blue
 		templateArmy("Blue");
 		

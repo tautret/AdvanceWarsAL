@@ -89,4 +89,5 @@ public abstract class Units extends ObservableAbstract<GameEntity> implements
 	public abstract UnitGroup getUnitGroup();
 	
 	public abstract void createArmy(int nb_unit);
+
 }
