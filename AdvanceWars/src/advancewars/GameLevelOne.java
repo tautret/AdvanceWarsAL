@@ -28,7 +28,11 @@ import advancewars.scenary.TRRoad;
 import advancewars.scenary.VBridge;
 import advancewars.scenary.VRiver;
 import advancewars.scenary.VRoad;
+import advancewars.units.UnitHeavyInfantry;
 import advancewars.units.UnitJeep;
+import advancewars.units.UnitLightInfantry;
+import advancewars.units.UnitLightTank;
+import advancewars.units.Units;
 import gameframework.core.CanvasDefaultImpl;
 import gameframework.core.Game;
 import gameframework.core.GameLevelDefaultImpl;
@@ -221,14 +225,20 @@ public class GameLevelOne extends GameLevelDefaultImpl{
 
 
 		
-		UnitJeep myJeep; 
-		myJeep = new UnitJeep(canvas,"Red");
-		myJeep.setPosition(new Point((19* SPRITE_SIZE), 2 * SPRITE_SIZE));
-		universe.addGameEntity(myJeep);
-		
-		myJeep = new UnitJeep(canvas,"Blue");
-		myJeep.setPosition(new Point((6* SPRITE_SIZE), 15 * SPRITE_SIZE));
-		universe.addGameEntity(myJeep);
+		Units myUnit;
+		myUnit = new UnitJeep(canvas,"Red");
+		myUnit.setPosition(new Point((5 * SPRITE_SIZE), 16 * SPRITE_SIZE));
+		universe.addGameEntity(myUnit);
+		myUnit = new UnitLightInfantry(canvas,"Blue");
+		myUnit.setPosition(new Point((18 * SPRITE_SIZE), 3 * SPRITE_SIZE));
+		universe.addGameEntity(myUnit);
+		myUnit = new UnitHeavyInfantry(canvas,"Red");
+		myUnit.setPosition(new Point((7 * SPRITE_SIZE), 16 * SPRITE_SIZE));
+		universe.addGameEntity(myUnit);
+		myUnit = new UnitLightTank(canvas,"Blue");
+		myUnit.setPosition(new Point((19 * SPRITE_SIZE), 3 * SPRITE_SIZE));
+		universe.addGameEntity(myUnit);
+
 		
 		// Arm�e Rouge
 		// Ghost myGhost;
