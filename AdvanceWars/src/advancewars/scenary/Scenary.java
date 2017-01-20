@@ -16,7 +16,7 @@ import observer_util.ObservableAbstract;
 import soldier.core.Unit;
 import soldier.core.Weapon;
 
-public abstract class Scenary extends ObservableAbstract<Scenary> implements Drawable, GameEntity, Overlappable, Movable {
+public abstract class Scenary extends ObservableAbstract<GameEntity> implements Drawable, GameEntity, Overlappable, Movable {
 	protected  DrawableImage image = null;
 	int x, y;
 	public static final int RENDERING_SIZE = 32;
@@ -72,6 +72,10 @@ public abstract class Scenary extends ObservableAbstract<Scenary> implements Dra
 
 	public void oneStepMove(){
 		
+	}
+	
+	public DrawableImage getImage(){
+		return image;
 	}
 
 }

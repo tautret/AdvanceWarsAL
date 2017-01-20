@@ -1,8 +1,20 @@
 package advancewars;
 
+import gameframework.core.CanvasDefaultImpl;
+import gameframework.core.Game;
+import gameframework.core.GameLevelDefaultImpl;
+import gameframework.core.GameMovableDriverDefaultImpl;
+import gameframework.core.GameUniverseDefaultImpl;
+import gameframework.core.GameUniverseViewPortDefaultImpl;
+import gameframework.moves_rules.MoveBlockerChecker;
+import gameframework.moves_rules.OverlapProcessor;
+import gameframework.moves_rules.OverlapProcessorDefaultImpl;
+
 import java.awt.Canvas;
 import java.awt.Frame;
 import java.awt.Point;
+import java.util.HashSet;
+import java.util.concurrent.ThreadLocalRandom;
 
 import advancewars.StrategyKeyboard.MoveCursorKeyboard;
 import advancewars.rule.CursorOverlapRules;
@@ -33,16 +45,6 @@ import advancewars.units.UnitJeep;
 import advancewars.units.UnitLightInfantry;
 import advancewars.units.UnitLightTank;
 import advancewars.units.Units;
-import gameframework.core.CanvasDefaultImpl;
-import gameframework.core.Game;
-import gameframework.core.GameLevelDefaultImpl;
-import gameframework.core.GameMovableDriverDefaultImpl;
-import gameframework.core.GameUniverseDefaultImpl;
-import gameframework.core.GameUniverseViewPortDefaultImpl;
-import gameframework.moves_rules.MoveBlockerChecker;
-import gameframework.moves_rules.MoveBlockerCheckerDefaultImpl;
-import gameframework.moves_rules.OverlapProcessor;
-import gameframework.moves_rules.OverlapProcessorDefaultImpl;
 
 
 public class GameLevelOne extends GameLevelDefaultImpl{
@@ -79,12 +81,86 @@ public class GameLevelOne extends GameLevelDefaultImpl{
 			{ 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,20, 20, 20, 20, 20, 20, 20 } };
 
 	public static final int SPRITE_SIZE = 32;
-
+	
+	protected HashSet<Point> pos_unite = new HashSet<Point>();
 	public GameLevelOne(Game g) {
 		super(g);
 		canvas = g.getCanvas();
 		canvas.setSize(SPRITE_SIZE*tab[0].length, SPRITE_SIZE*tab.length);
 		((Frame)canvas.getParent()).pack();
+	}
+	
+	public int RandomPositionX(){
+		return ThreadLocalRandom.current().nextInt(1,tab[0].length-2);
+	}
+	
+	public int RandomPositionY(){
+		return ThreadLocalRandom.current().nextInt(1,tab.length-2);
+	}
+	
+	public void templateArmy(String name){
+		Units myUnit;
+		Point pos = new Point((RandomPositionX() * SPRITE_SIZE), RandomPositionY() * SPRITE_SIZE);
+		myUnit = new UnitJeep(canvas,name);
+		myUnit.createArmy(5);
+		while(pos_unite.add(pos));
+		{
+			pos = new Point((RandomPositionX() * SPRITE_SIZE), RandomPositionY() * SPRITE_SIZE);
+		}
+		myUnit.setPosition(pos);
+		myUnit.addObserver(((AdvanceWarsDefaultImpl)g).currentItem);
+		universe.addGameEntity(myUnit);
+		
+		
+		myUnit = new UnitLightInfantry(canvas,name);
+		myUnit.createArmy(10);
+		while(pos_unite.add(pos));
+		{
+			pos = new Point((RandomPositionX() * SPRITE_SIZE), RandomPositionY() * SPRITE_SIZE);
+		}
+		myUnit.setPosition(pos);
+		myUnit.addObserver(((AdvanceWarsDefaultImpl)g).currentItem);
+		universe.addGameEntity(myUnit);
+		
+		myUnit = new UnitLightInfantry(canvas,name);
+		myUnit.createArmy(10);
+		while(pos_unite.add(pos));
+		{
+			pos = new Point((RandomPositionX() * SPRITE_SIZE), RandomPositionY() * SPRITE_SIZE);
+		}
+		myUnit.setPosition(pos);		
+		myUnit.addObserver(((AdvanceWarsDefaultImpl)g).currentItem);
+		universe.addGameEntity(myUnit);
+		
+		myUnit = new UnitHeavyInfantry(canvas,name);
+		myUnit.createArmy(10);
+		while(pos_unite.add(pos));
+		{
+			pos = new Point((RandomPositionX() * SPRITE_SIZE), RandomPositionY() * SPRITE_SIZE);
+		}
+		myUnit.setPosition(pos);
+		myUnit.addObserver(((AdvanceWarsDefaultImpl)g).currentItem);
+		universe.addGameEntity(myUnit);
+		
+		myUnit = new UnitLightTank(canvas,name);
+		myUnit.createArmy(5);
+		while(pos_unite.add(pos));
+		{
+			pos = new Point((RandomPositionX() * SPRITE_SIZE), RandomPositionY() * SPRITE_SIZE);
+		}
+		myUnit.setPosition(pos);	
+		myUnit.addObserver(((AdvanceWarsDefaultImpl)g).currentItem);
+		universe.addGameEntity(myUnit);
+		
+		myUnit = new UnitLightTank(canvas,name);
+		myUnit.createArmy(5);
+		while(pos_unite.add(pos));
+		{
+			pos = new Point((RandomPositionX() * SPRITE_SIZE), RandomPositionY() * SPRITE_SIZE);
+		}
+		myUnit.setPosition(pos);	
+		myUnit.addObserver(((AdvanceWarsDefaultImpl)g).currentItem);
+		universe.addGameEntity(myUnit);
 	}
 
 	@Override
@@ -223,22 +299,17 @@ public class GameLevelOne extends GameLevelDefaultImpl{
 		universe.addGameEntity(myCursor);
 		
 
-
 		
-		Units myUnit;
-		myUnit = new UnitJeep(canvas,"Red");
-		myUnit.setPosition(new Point((5 * SPRITE_SIZE), 16 * SPRITE_SIZE));
-		universe.addGameEntity(myUnit);
-		myUnit = new UnitLightInfantry(canvas,"Blue");
-		myUnit.setPosition(new Point((18 * SPRITE_SIZE), 3 * SPRITE_SIZE));
-		universe.addGameEntity(myUnit);
-		myUnit = new UnitHeavyInfantry(canvas,"Red");
-		myUnit.setPosition(new Point((7 * SPRITE_SIZE), 16 * SPRITE_SIZE));
-		universe.addGameEntity(myUnit);
-		myUnit = new UnitLightTank(canvas,"Blue");
-		myUnit.setPosition(new Point((19 * SPRITE_SIZE), 3 * SPRITE_SIZE));
-		universe.addGameEntity(myUnit);
+		//Army Red
+		templateArmy("Red");
+		
 
+		//Army Blue
+		templateArmy("Blue");
+		
+		
+		
+		
 		
 		// Arm�e Rouge
 		// Ghost myGhost;
