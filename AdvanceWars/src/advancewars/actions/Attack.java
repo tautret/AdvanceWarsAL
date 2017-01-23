@@ -16,4 +16,5 @@ public class Attack extends Scenary implements Action {
 		// TODO Auto-generated method stub
 
 	}
+
 }
