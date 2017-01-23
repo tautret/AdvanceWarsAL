@@ -11,7 +11,7 @@ public class UnitJeep extends Units{
 
 	public UnitJeep(Canvas c,String name) {
 		super(c,"images/Jeep-"+name+".png",RENDERING_SIZE);
-		jeepGroup = new UnitGroup("Jeep");
+		jeepGroup = new UnitGroup("Jeep",name);
 	}
 	
 	public UnitGroup getUnitGroup() {

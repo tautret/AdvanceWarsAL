@@ -11,7 +11,7 @@ public class UnitLightTank extends Units{
 	
 	public UnitLightTank(Canvas c,String name) {
 		super(c,"images/Tank-"+name+".png",RENDERING_SIZE);
-		lightTankGroup = new UnitGroup("LightTank");
+		lightTankGroup = new UnitGroup("LightTank",name);
 	}
 	
 	public UnitGroup getUnitGroup() {

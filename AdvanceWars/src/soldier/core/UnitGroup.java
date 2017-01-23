@@ -6,7 +6,6 @@ package soldier.core;
 
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
@@ -18,9 +17,12 @@ public class UnitGroup extends ObservableAbstract<Unit>
 
 	private Set<Unit> units;
 	private String name;
+	private String camp;
 
-	public UnitGroup(String name) {
+
+	public UnitGroup(String name, String camp) {
 		this.name = name;
+		this.camp = camp;
 		units = new TreeSet<Unit>(new Comparator<Unit>() {
 			@Override
 			public int compare(Unit o1, Unit o2) {
@@ -46,7 +48,12 @@ public class UnitGroup extends ObservableAbstract<Unit>
 	public String getName() {
 		return name;
 	}
+	
 
+	public String getCamp() {
+		return camp;
+	}
+	
 	@Override
 	public float getHealthPoints() {
 		float sum = 0.f;
@@ -69,6 +76,7 @@ public class UnitGroup extends ObservableAbstract<Unit>
 	@Override
 	public float parry(float force) {
 		float f = 0.f;
+		System.out.println(force);
 		Iterator<Unit> it = subUnits();
 		while (force > 0.f && it.hasNext()) {
 			Unit u = it.next();
@@ -86,6 +94,15 @@ public class UnitGroup extends ObservableAbstract<Unit>
 		for (Unit u : units) {
 			if (u.alive())
 				sum += u.strike();
+		}
+		return sum;
+	}
+	
+	public int getNbSoldat(){
+		int sum = 0;
+		for(Unit u : units){
+			if(u.alive())
+				sum++;
 		}
 		return sum;
 	}

@@ -11,7 +11,7 @@ public class UnitHeavyInfantry extends Units{
 
 	public UnitHeavyInfantry(Canvas c,String name) {
 		super(c,"images/Bazooka-"+name+".png", RENDERING_SIZE+3);
-		heavyInfantryGroup = new UnitGroup("HeavyInfantry");
+		heavyInfantryGroup = new UnitGroup("HeavyInfantry",name);
 	}
 	
 	public UnitGroup getUnitGroup() {

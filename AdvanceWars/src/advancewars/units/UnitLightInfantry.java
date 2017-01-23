@@ -11,7 +11,7 @@ public class UnitLightInfantry extends Units{
 	
 	public UnitLightInfantry(Canvas c,String name) {
 		super(c,"images/Soldier-"+name+".png",RENDERING_SIZE);
-		lightInfantryGroup = new UnitGroup("LightInfantry");
+		lightInfantryGroup = new UnitGroup("LightInfantry",name);
 	}
 	
 	public UnitGroup getUnitGroup() {
