@@ -4,18 +4,14 @@ import java.awt.Canvas;
 import java.awt.Graphics;
 
 import soldier.core.Weapon;
+import soldier.weapon.ScenaryShield;
 
 public class Building extends Scenary{	
 	
 	private static final int MORE_PIXEL = 5;
 
 	public Building(Canvas defaultCanvas, int xx, int yy) {
-		super(defaultCanvas, xx, yy, "images/Building.png");
-	}
-
-	@Override
-	public Weapon getBonus() {
-		return null;
+		super(defaultCanvas, xx, yy, "images/Building.png",new ScenaryShield(3));
 	}
 	
 	@Override

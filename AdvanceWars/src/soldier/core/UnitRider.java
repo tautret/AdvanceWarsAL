@@ -1,13 +1,13 @@
 /**
  * D. Auber & P. Narbel
- * Solution TD Architecture Logicielle 2016 Université Bordeaux.
+ * Solution TD Architecture Logicielle 2016 Universitï¿½ Bordeaux.
  */
 package soldier.core;
 
 public abstract class UnitRider extends UnitSimple {
 
-	public UnitRider(String name, BehaviorSoldier behavior) {
-		super(name, behavior);
+	public UnitRider(String name, BehaviorSoldier behavior, int minRangeAttack, int maxRangeAttack, int deplacementTurn, int maxDeplacement) {
+		super(name, behavior,minRangeAttack,maxRangeAttack,deplacementTurn,maxDeplacement);
 	}
 
 	@Override

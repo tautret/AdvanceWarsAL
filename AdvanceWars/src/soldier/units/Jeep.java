@@ -1,13 +1,12 @@
 package soldier.units;
 
-import soldier.core.BehaviorSoldierStd;
+import advancewars.behaviors.BehaviorDefault;
 import soldier.core.UnitRider;
 
 public class Jeep extends UnitRider {
 
 	public Jeep() {
-		super("Jeep", new BehaviorSoldierStd(100, 10));
-		// TODO Auto-generated constructor stub
+		super("Jeep", new BehaviorDefault(10,3),1,1,8,80);
 	}
 
 }

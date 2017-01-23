@@ -3,12 +3,17 @@ package advancewars.StrategyKeyboard;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 
+import advancewars.Cursor;
+import advancewars.Selection;
 import gameframework.moves_rules.MoveStrategyKeyboard;
 
 public class MoveCursorKeyboard extends MoveStrategyKeyboard {
+	private Selection s;
+	private Cursor c;
 
-	public MoveCursorKeyboard() {
-		// TODO Auto-generated constructor stub
+	public MoveCursorKeyboard(Selection s,Cursor c) {
+		this.s = s;
+		this.c = c;
 	}
 
 	@Override
@@ -31,8 +36,10 @@ public class MoveCursorKeyboard extends MoveStrategyKeyboard {
 			case KeyEvent.VK_E:
 				break;
 			case KeyEvent.VK_W:
+				s.selectItem((Point)c.getPosition().clone());
 				break;
 			case KeyEvent.VK_X:
+				s.unselect();
 				break;
 			}
 		}

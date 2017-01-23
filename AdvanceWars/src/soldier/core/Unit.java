@@ -37,4 +37,16 @@ public interface Unit extends Observable<Unit> {
 	 * Visitor method
 	 */
 	public void accept(UnitVisitor v);
+	
+	/**
+	 * Advance Wars specific methods
+	 */
+	public int getMaxDeplacement();
+	public void setMaxDeplacement(int value);
+
+	public int getDeplacementTurn();
+	
+	public int getMinRangeAttack();
+
+	public int getMaxRangeAttack();
 }

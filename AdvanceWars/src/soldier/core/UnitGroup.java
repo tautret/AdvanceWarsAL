@@ -1,6 +1,6 @@
 /**
  * D. Auber & P. Narbel
- * Solution TD Architecture Logicielle 2016 Université Bordeaux.
+ * Solution TD Architecture Logicielle 2016 Universitï¿½ Bordeaux.
  */
 package soldier.core;
 
@@ -141,6 +141,56 @@ public class UnitGroup extends ObservableAbstract<Unit>
 		for (Iterator<Unit> it = subUnits(); it.hasNext(); it.next()
 				.removeEquipment(w)) {
 		}
+	}
+
+	@Override
+	public int getMaxDeplacement() {
+		Iterator<Unit> it = subUnits();
+		int max=Integer.MAX_VALUE;
+		while (it.hasNext()){
+			Unit u = it.next();
+			max = Integer.min(max, u.getMaxDeplacement());
+		}
+		return max;
+	}
+
+	@Override
+	public void setMaxDeplacement(int value) {
+		Iterator<Unit> it = subUnits();
+		while (it.hasNext()){
+			Unit u = it.next();
+			u.setMaxDeplacement(value);
+		}
+	}
+
+	@Override
+	public int getDeplacementTurn() {
+		Iterator<Unit> it = subUnits();
+		while (it.hasNext()){
+			Unit u = it.next();
+			return u.getDeplacementTurn();
+		}
+		return 0;
+	}
+
+	@Override
+	public int getMinRangeAttack() {
+		Iterator<Unit> it = subUnits();
+		while (it.hasNext()){
+			Unit u = it.next();
+			return u.getMinRangeAttack();
+		}
+		return 0;
+	}
+
+	@Override
+	public int getMaxRangeAttack() {
+		Iterator<Unit> it = subUnits();
+		while (it.hasNext()){
+			Unit u = it.next();
+			return u.getMaxRangeAttack();
+		}
+		return 0;
 	}
  
 }

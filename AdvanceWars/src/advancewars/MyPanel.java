@@ -14,6 +14,7 @@ import advancewars.units.Units;
 import gameframework.core.DrawableImage;
 import gameframework.core.GameEntity;
 import observer_util.Observer;
+import soldier.core.UnitGroup;
 
 public class MyPanel extends JPanel implements Observer<GameEntity>{
 	//Unit Panel
@@ -77,13 +78,21 @@ public class MyPanel extends JPanel implements Observer<GameEntity>{
 			String name = s.getClass().getName();
 			landName.setText(name.substring(name.lastIndexOf(".")+1));
 			landArea.setIcon(new ImageIcon(landImg.getImage().getScaledInstance(landArea.getHeight(),landArea.getHeight(), 1)));
+			defenseBonusValue.setText(""+s.getBehavior().getValue());
+			
 		}
-		else{
+		else if (ge instanceof Units){
 			Units u = (Units) ge;
+			UnitGroup g = u.getUnitGroup();
 			unit.setVisible(true);
 			String name = u.getClass().getName();
 			unitName.setText(name.substring(name.lastIndexOf("Unit")+4));
-			
+			unitLife.setText(""+g.getHealthPoints());
+			unitGas.setText(u.getUnitGroup().getMaxDeplacement()+"");
+			unitAmmo.setText(g.getMinRangeAttack()+" - "+g.getMaxRangeAttack());
+		}else{
+			unit.setVisible(false);
+			land.setVisible(false);
 		}
 	}
 

@@ -179,6 +179,7 @@ public class GameLevelOne extends GameLevelDefaultImpl{
 		// * SPRITE_SIZE, 17 * SPRITE_SIZE),
 		// new Point(14 * SPRITE_SIZE, 15 * SPRITE_SIZE), life[0], score[0],
 		// endOfGame);
+		
 		OverlapProcessor overlapProcessor = new OverlapProcessorDefaultImpl();
 		MoveBlockerChecker moveBlockerChecker = new MoveBlockerCursor();
 		universe = new GameUniverseDefaultImpl(moveBlockerChecker,
@@ -187,7 +188,9 @@ public class GameLevelOne extends GameLevelDefaultImpl{
 		cursorOverlap.setUniverse(universe);
 		overlapProcessor.setOverlapRules(cursorOverlap);
 		
-		MoveCursorKeyboard keyStr = new MoveCursorKeyboard();
+		Selection selection = new Selection(canvas, universe, ((AdvanceWarsDefaultImpl)g).selectedItem);
+		Cursor myCursor = new Cursor(canvas);
+		MoveCursorKeyboard keyStr = new MoveCursorKeyboard(selection,myCursor);
 		canvas.addKeyListener(keyStr);
 
 		gameBoard = new GameUniverseViewPortDefaultImpl(canvas, universe);
@@ -290,7 +293,7 @@ public class GameLevelOne extends GameLevelDefaultImpl{
 			
 		}
 
-		Cursor myCursor = new Cursor(canvas);
+		
 		GameMovableDriverDefaultImpl cursorDriver = new GameMovableDriverDefaultImpl();
 		cursorDriver.setStrategy(keyStr);
 		cursorDriver.setmoveBlockerChecker(moveBlockerChecker);

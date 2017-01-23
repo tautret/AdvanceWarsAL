@@ -4,13 +4,14 @@ import java.awt.Canvas;
 import java.awt.Graphics;
 
 import soldier.core.Weapon;
+import soldier.weapon.ScenaryShield;
 
 public class BMountain extends Scenary{	
 	
 	private static final int MORE_PIXEL = 5;
 	
 	public BMountain(Canvas defaultCanvas, int xx, int yy) {
-		super(defaultCanvas, xx, yy, "images/BigMountain.png");
+		super(defaultCanvas, xx, yy, "images/BigMountain.png",new ScenaryShield(4));
 	}
 	
 	@Override
@@ -19,9 +20,5 @@ public class BMountain extends Scenary{
 				null);
 	}
 
-	@Override
-	public Weapon getBonus() {
-		return null;
-	}
 	
 }

@@ -17,6 +17,8 @@ public class Cursor extends GameMovable implements Drawable, GameEntity, Overlap
 	
 	protected final SpriteManager spriteManager;
 	public static final int RENDERING_SIZE = 64;
+	public static final int DECALAGE_X = 5;
+	public static final int DECALAGE_Y = 6;
 	protected boolean movable = true;
 	
 	public Cursor(Canvas defaultCanvas) {
@@ -45,7 +47,7 @@ public class Cursor extends GameMovable implements Drawable, GameEntity, Overlap
 	@Override
 	public void oneStepMove() {
 		super.oneStepMove();
-		if ((getPosition().getX()+5)%(RENDERING_SIZE/2) == 0 && (getPosition().getY()+6)%(RENDERING_SIZE/2) ==0){
+		if ((getPosition().getX()+DECALAGE_X)%(RENDERING_SIZE/2) == 0 && (getPosition().getY()+DECALAGE_Y)%(RENDERING_SIZE/2) ==0){
 			SpeedVector m = getDriver().getSpeedVector(this);
 			m.setDirection(new Point(0,0));
 		}

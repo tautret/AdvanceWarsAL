@@ -5,8 +5,8 @@
 package soldier.core;
 
 public class BehaviorSoldierStd implements BehaviorSoldier {
-	private float healthPoints;
-	private float force;
+	protected float healthPoints;
+	protected float force;
 	private float initialHealth;
 
 	public BehaviorSoldierStd(float healthPoints, float force) {

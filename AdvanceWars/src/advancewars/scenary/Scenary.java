@@ -13,20 +13,19 @@ import gameframework.core.Overlappable;
 import gameframework.moves_rules.SpeedVector;
 import gameframework.moves_rules.SpeedVectorDefaultImpl;
 import observer_util.ObservableAbstract;
-import soldier.core.Unit;
-import soldier.core.Weapon;
+import soldier.weapon.ScenaryShield;
 
 public abstract class Scenary extends ObservableAbstract<GameEntity> implements Drawable, GameEntity, Overlappable, Movable {
 	protected  DrawableImage image = null;
 	int x, y;
 	public static final int RENDERING_SIZE = 32;
-	public Unit unit;
+	private ScenaryShield behavior;
 	
-	
-	public Scenary(Canvas defaultCanvas, int xx, int yy,String path) {
+	public Scenary(Canvas defaultCanvas, int xx, int yy,String path,ScenaryShield bs) {
 		image = new DrawableImage(path, defaultCanvas);
 		x = xx;
 		y = yy;
+		this.behavior = bs;
 	}
 	
 	@Override
@@ -37,18 +36,6 @@ public abstract class Scenary extends ObservableAbstract<GameEntity> implements 
 	
 	public Point getPos() {
 		return (new Point(x, y));
-	}
-	
-	public abstract Weapon getBonus();
-	
-	public void addSoldier(Unit s){
-		unit = s;
-		s.addEquipment(this.getBonus());
-	}
-	
-	public void removeSoldier(){
-		unit.removeEquipment(this.getBonus());
-		unit = null;
 	}
 	
 	@Override
@@ -77,5 +64,11 @@ public abstract class Scenary extends ObservableAbstract<GameEntity> implements 
 	public DrawableImage getImage(){
 		return image;
 	}
+
+	public ScenaryShield getBehavior() {
+		return behavior;
+	}
+	
+	
 
 }

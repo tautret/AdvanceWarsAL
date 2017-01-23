@@ -1,13 +1,12 @@
 package soldier.units;
 
-import soldier.core.BehaviorSoldier;
-import soldier.core.BehaviorSoldierStd;
+import advancewars.behaviors.BehaviorDefault;
 import soldier.core.UnitInfantry;
 
 public class HeavyInfantry extends UnitInfantry {
 
 	public HeavyInfantry() {
-		super("HeavyInfantry", new BehaviorSoldierStd(25, 5));
+		super("HeavyInfantry", new BehaviorDefault(10, 4.5f),1,1,2,70);
 		// TODO Auto-generated constructor stub
 	}
 

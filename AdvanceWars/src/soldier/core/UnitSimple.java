@@ -14,10 +14,18 @@ public abstract class UnitSimple extends ObservableAbstract<Unit>
 
 	private BehaviorSoldier behavior;
 	private String name;
+	private int minRangeAttack;
+	private int maxRangeAttack;
+	private int maxDeplacement;
+	private int deplacementTurn;
 
-	public UnitSimple(String name, BehaviorSoldier behavior) {
+	public UnitSimple(String name, BehaviorSoldier behavior, int minRangeAttack, int maxRangeAttack, int deplacementTurn, int maxDeplacement) {
 		this.behavior = behavior;
 		this.name = name;
+		this.minRangeAttack = minRangeAttack;
+		this.maxRangeAttack = maxRangeAttack;
+		this.maxDeplacement = maxDeplacement;
+		this.deplacementTurn = deplacementTurn;
 	}
 
 	@Override
@@ -111,5 +119,30 @@ public abstract class UnitSimple extends ObservableAbstract<Unit>
 		for (Iterator<Weapon> it = getWeapons(); it.hasNext(); it.next())
 			++result;
 		return result;
+	}
+	
+	@Override
+	public int getMaxDeplacement() {
+		return maxDeplacement;
+	}
+
+	@Override
+	public void setMaxDeplacement(int value) {
+		maxDeplacement = value;
+	}
+
+	@Override
+	public int getDeplacementTurn() {
+		return deplacementTurn;
+	}
+
+	@Override
+	public int getMinRangeAttack() {
+		return minRangeAttack;
+	}
+
+	@Override
+	public int getMaxRangeAttack() {
+		return maxRangeAttack;
 	}
 }

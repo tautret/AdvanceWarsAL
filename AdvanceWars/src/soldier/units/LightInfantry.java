@@ -1,12 +1,12 @@
 package soldier.units;
 
-import soldier.core.BehaviorSoldierStd;
+import advancewars.behaviors.BehaviorDefault;
 import soldier.core.UnitInfantry;
 
 public class LightInfantry extends UnitInfantry {
 
 	public LightInfantry() {
-		super("LightInfantry", new BehaviorSoldierStd(25, 2.5f));
+		super("LightInfantry", new BehaviorDefault(10,1.5f),1,1,3,99);
 		// TODO Auto-generated constructor stub
 	}
 
