@@ -1,16 +1,19 @@
 package advancewars.StrategyKeyboard;
 
+import gameframework.moves_rules.MoveStrategyKeyboard;
+
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 
 import advancewars.Cursor;
 import advancewars.Selection;
-import gameframework.moves_rules.MoveStrategyKeyboard;
+import advancewars.Tour;
 
 public class MoveCursorKeyboard extends MoveStrategyKeyboard {
 	private Selection s;
 	private Cursor c;
-
+	private Tour t = new Tour("Blue");
+	
 	public MoveCursorKeyboard(Selection s,Cursor c) {
 		this.s = s;
 		this.c = c;
@@ -34,9 +37,10 @@ public class MoveCursorKeyboard extends MoveStrategyKeyboard {
 				speedVector.setDirection(new Point(0, 1));
 				break;
 			case KeyEvent.VK_E:
+				t.newTour();
 				break;
 			case KeyEvent.VK_W:
-				s.selectItem((Point)c.getPosition().clone());
+				s.selectItem((Point)c.getPosition().clone(),t);
 				break;
 			case KeyEvent.VK_X:
 				s.unselect();

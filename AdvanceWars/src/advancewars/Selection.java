@@ -1,25 +1,24 @@
 package advancewars;
 
+import gameframework.core.GameEntity;
+import gameframework.core.GameUniverse;
+import gameframework.core.Movable;
+import gameframework.moves_rules.MoveBlocker;
+
 import java.awt.Canvas;
 import java.awt.Point;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 
+import observer_util.Observer;
+import soldier.core.UnitGroup;
 import advancewars.actions.Action;
 import advancewars.actions.Attack;
 import advancewars.actions.Move;
 import advancewars.scenary.Scenary;
 import advancewars.units.Units;
-import gameframework.core.GameEntity;
-import gameframework.core.GameUniverse;
-import gameframework.core.Movable;
-import gameframework.moves_rules.MoveBlocker;
-import observer_util.Observer;
-import soldier.core.UnitGroup;
 
 public class Selection {
 	private GameUniverse universe;
@@ -47,7 +46,7 @@ public class Selection {
 		command.clear();
 	}
 	
-	public void selectItem (Point p){
+	public void selectItem (Point p, Tour t){
 		unselect();
 		p.x += Cursor.DECALAGE_X;
 		p.y += Cursor.DECALAGE_Y;
@@ -64,10 +63,12 @@ public class Selection {
 				}
 			}
 		}
+		if(((Units)unit).getUnitGroup().getCamp().equals(t.getTour())){
 		observer.update(land);
 		observer.update(unit);
 		if (unit != null)
 			fillCommandList();
+		}
 	}
 	
 	private void fillCommandList(){
@@ -82,8 +83,14 @@ public class Selection {
 			}
 			else if (g instanceof Units && is_attackable(((Units) g).getPosition())){
 				Point p = ((Units) g).getPosition();
-				Attack m = new Attack(canvas, p.x,p.y);
-				tmp.put(p, m);
+				Units u1 = ((Units)unit);
+				UnitGroup g1 = u1.getUnitGroup();
+				Units u2 = ((Units)g);
+				UnitGroup g2 = u2.getUnitGroup();
+				if(!g2.getCamp().equals(g1.getCamp())){
+					Attack m = new Attack(canvas, p.x,p.y);
+					tmp.put(p, m);
+				}
 			}
 		}
 	
