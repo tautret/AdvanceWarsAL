@@ -190,7 +190,7 @@ public class GameLevelOne extends GameLevelDefaultImpl{
 		
 		Selection selection = new Selection(canvas, universe, ((AdvanceWarsDefaultImpl)g).selectedItem);
 		Cursor myCursor = new Cursor(canvas);
-		MoveCursorKeyboard keyStr = new MoveCursorKeyboard(selection,myCursor);
+		MoveCursorKeyboard keyStr = new MoveCursorKeyboard(selection,myCursor,score[0]);
 		canvas.addKeyListener(keyStr);
 
 		gameBoard = new GameUniverseViewPortDefaultImpl(canvas, universe);

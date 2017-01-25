@@ -168,8 +168,6 @@ public class AdvanceWarsDefaultImpl implements Game, Observer{
 		scoreValue = new Label(Integer.toString(score[0].getValue()));
 		currentLevelValue = new Label(Integer.toString(levelNumber));
 		c.add(dayText);
-		c.add(dayValue);
-		c.add(scoreText);
 		c.add(scoreValue);
 		c.add(currentLevel);
 		c.add(currentLevelValue);

@@ -23,6 +23,8 @@ public abstract class Units extends ObservableAbstract<GameEntity> implements
 	protected final SpriteManager spriteManager;
 	protected int rendering_size;
 	protected boolean movable = true;
+	protected boolean isDisable = false;
+
 	Point position = new Point();
 	SpeedVector speedVector = SpeedVectorDefaultImpl.createNullVector();
 
@@ -79,6 +81,8 @@ public abstract class Units extends ObservableAbstract<GameEntity> implements
 			spriteType += "up";
 		} else if (tmp.getX() == 1) {
 			spriteType += "right";
+		} else if (isDisable) {
+			spriteType += "disable";
 		} else {
 			spriteType += "inactive";
 		}
@@ -89,5 +93,9 @@ public abstract class Units extends ObservableAbstract<GameEntity> implements
 	public abstract UnitGroup getUnitGroup();
 	
 	public abstract void createArmy(int nb_unit);
+	
+	public void setDisable(boolean isDisable) {
+		this.isDisable = isDisable;
+	}
 
 }
