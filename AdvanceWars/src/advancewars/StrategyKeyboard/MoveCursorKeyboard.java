@@ -1,20 +1,21 @@
 package advancewars.StrategyKeyboard;
 
-import gameframework.core.ObservableValue;
-import gameframework.moves_rules.MoveStrategyKeyboard;
-
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 
 import advancewars.Cursor;
 import advancewars.Selection;
+import advancewars.Selection.STATE;
 import advancewars.Tour;
+import gameframework.core.ObservableValue;
+import gameframework.moves_rules.MoveStrategyKeyboard;
 
 public class MoveCursorKeyboard extends MoveStrategyKeyboard {
 	private Selection s;
 	private Cursor c;
 	private Tour t = new Tour("Blue");
 	private final ObservableValue<Integer> day;
+	private boolean ok = true;
 	
 	public MoveCursorKeyboard(Selection s,Cursor c,ObservableValue<Integer> day) {
 		this.s = s;
@@ -43,12 +44,28 @@ public class MoveCursorKeyboard extends MoveStrategyKeyboard {
 				t.newTour(day);
 				break;
 			case KeyEvent.VK_W:
-				s.selectItem((Point)c.getPosition().clone(),t);
+				if (ok){
+					if (s.get_current_state() == Selection.STATE.WAITING){
+						s.selectItem((Point)c.getPosition().clone(),t);
+					}
+					else if (s.get_current_state() == STATE.READY){
+						s.set_state(STATE.GO);
+					}
+					else{
+						s.unselect();
+					}
+				}
+				ok = false;
 				break;
 			case KeyEvent.VK_X:
 				s.unselect();
 				break;
 			}
 		}
+	}
+	
+	@Override
+	public void keyReleased(KeyEvent e){
+		ok = true;
 	}
 }

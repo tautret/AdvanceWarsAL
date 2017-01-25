@@ -15,6 +15,7 @@ import java.awt.Rectangle;
 
 public class Cursor extends GameMovable implements Drawable, GameEntity, Overlappable {
 	
+	
 	protected final SpriteManager spriteManager;
 	public static final int RENDERING_SIZE = 64;
 	public static final int DECALAGE_X = 5;

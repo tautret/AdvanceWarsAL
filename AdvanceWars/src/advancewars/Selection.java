@@ -21,6 +21,7 @@ import advancewars.scenary.Scenary;
 import advancewars.units.Units;
 
 public class Selection {
+	public enum STATE {WAITING,READY,GO};
 	private GameUniverse universe;
 	private Observer<GameEntity> observer;
 	private Set<Action> command;
@@ -28,6 +29,7 @@ public class Selection {
 	
 	private GameEntity land = null;
 	private GameEntity unit = null;
+	private STATE state = STATE.WAITING;
 	
 	public Selection(Canvas c, GameUniverse universe, Observer<GameEntity> observer) {
 		super();
@@ -44,6 +46,7 @@ public class Selection {
 			universe.removeGameEntity((GameEntity) a);
 		}
 		command.clear();
+		state = STATE.WAITING;
 	}
 	
 	public void selectItem (Point p, Tour t){
@@ -63,11 +66,13 @@ public class Selection {
 				}
 			}
 		}
-		if(((Units)unit).getUnitGroup().getCamp().equals(t.getTour())){
-		observer.update(land);
-		observer.update(unit);
-		if (unit != null)
-			fillCommandList();
+		if(unit != null &&  ((Units)unit).getUnitGroup().getCamp().equals(t.getTour())){
+			observer.update(land);
+			observer.update(unit);
+			if (unit != null){
+				fillCommandList();
+				state = STATE.READY;
+			}
 		}
 	}
 	
@@ -76,9 +81,10 @@ public class Selection {
 		HashMap<Point,Action> tmp = new HashMap<Point,Action>();
 		while (i.hasNext()){
 			GameEntity g = i.next();
+			
 			if (g instanceof Scenary && !(g instanceof MoveBlocker) && is_reachable(((Scenary) g).getPos())){
 				Point p = ((Scenary) g).getPosition();
-				Move m = new Move(canvas, p.x,p.y);
+				Move m = new Move(canvas, p.x,p.y,(Units)unit,((Scenary) g).getPos());
 				tmp.put(p, m);
 			}
 			else if (g instanceof Units && is_attackable(((Units) g).getPosition())){
@@ -117,6 +123,14 @@ public class Selection {
 		int max_dst = g.getMaxRangeAttack()*32;
 		int distance = (int) (Math.abs(current.getX()-p.x) + Math.abs(current.getY()-p.y));
 		return !p.equals(current) && distance>=min_dst && distance<=max_dst;
+	}
+	
+	public STATE get_current_state(){
+		return state;
+	}
+	
+	public void set_state(STATE s){
+		state = s;
 	}
 
 }

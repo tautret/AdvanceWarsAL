@@ -5,6 +5,10 @@ import java.lang.reflect.Method;
 import java.util.Vector;
 
 import advancewars.Cursor;
+import advancewars.Selection;
+import advancewars.Selection.STATE;
+import advancewars.actions.Attack;
+import advancewars.actions.Move;
 import advancewars.scenary.BLRiver;
 import advancewars.scenary.BLRoad;
 import advancewars.scenary.BMountain;
@@ -39,9 +43,10 @@ public class CursorOverlapRules extends OverlapRulesApplierDefaultImpl {
 	protected GameUniverse universe;
 	protected Vector<Scenary> vScenary = new Vector<Scenary>();
 	private Point pos;
-
-	public CursorOverlapRules(Point pos) {
+	private Selection s;
+	public CursorOverlapRules(Point pos, Selection s) {
 		this.pos = pos;
+		this.s = s;
 	}
 
 	@Override
@@ -175,6 +180,26 @@ public class CursorOverlapRules extends OverlapRulesApplierDefaultImpl {
 	}
 	public void overlapRule(Cursor p, UnitLightTank s) {
 		overlapRule(p, (Units)s);
+	}
+	
+	public void overlapRule(Cursor p, Move m) {
+		Point coord = (Point) p.getPosition().clone();
+		coord.x += 5;
+		coord.y += 6;
+		if (coord.equals(m.getPosition()) && s.get_current_state() == STATE.GO){
+			m.execute();
+			s.unselect();
+		}
+	}
+	
+	public void overlapRule(Cursor p, Attack a) {
+		Point coord = (Point) p.getPosition().clone();
+		coord.x += 5;
+		coord.y += 6;
+		if (coord.equals(a.getPosition()) && s.get_current_state() == STATE.GO){
+			a.execute();
+			s.unselect();
+		}
 	}
 
 }

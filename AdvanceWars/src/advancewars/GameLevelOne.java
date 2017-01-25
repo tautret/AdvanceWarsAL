@@ -184,11 +184,12 @@ public class GameLevelOne extends GameLevelDefaultImpl{
 		MoveBlockerChecker moveBlockerChecker = new MoveBlockerCursor();
 		universe = new GameUniverseDefaultImpl(moveBlockerChecker,
 				overlapProcessor);
-		CursorOverlapRules cursorOverlap = new CursorOverlapRules(new Point(0,0));
+		Selection selection = new Selection(canvas, universe, ((AdvanceWarsDefaultImpl)g).selectedItem);
+		CursorOverlapRules cursorOverlap = new CursorOverlapRules(new Point(0,0),selection);
 		cursorOverlap.setUniverse(universe);
 		overlapProcessor.setOverlapRules(cursorOverlap);
 		
-		Selection selection = new Selection(canvas, universe, ((AdvanceWarsDefaultImpl)g).selectedItem);
+		
 		Cursor myCursor = new Cursor(canvas);
 		MoveCursorKeyboard keyStr = new MoveCursorKeyboard(selection,myCursor,score[0]);
 		canvas.addKeyListener(keyStr);
