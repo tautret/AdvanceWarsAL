@@ -66,12 +66,16 @@ public class Selection {
 				}
 			}
 		}
-		if(unit != null &&  ((Units)unit).getUnitGroup().getCamp().equals(t.getTour())){
-			observer.update(land);
-			observer.update(unit);
-			if (unit != null){
-				fillCommandList();
-				state = STATE.READY;
+		if(unit != null){
+			Units u = ((Units)unit);
+			UnitGroup g = u.getUnitGroup();
+			if(g.getCamp().equals(t.getTour()) && !u.isDisable() ){
+				observer.update(land);
+				observer.update(unit);
+				if (unit != null){
+					fillCommandList();
+					state = STATE.READY;
+				}
 			}
 		}
 	}
@@ -93,8 +97,12 @@ public class Selection {
 				UnitGroup g1 = u1.getUnitGroup();
 				Units u2 = ((Units)g);
 				UnitGroup g2 = u2.getUnitGroup();
+				Scenary s1 = foundScenary(u1);
+				Scenary s2 = foundScenary(u2);
+				System.out.println("s1 :" + s1.toString());
+				System.out.println("s2 :" + s2.toString());
 				if(!g2.getCamp().equals(g1.getCamp())){
-					Attack m = new Attack(canvas, p.x,p.y);
+					Attack m = new Attack(canvas, p.x,p.y,u1,u2,s1,s2,universe);
 					tmp.put(p, m);
 				}
 			}
@@ -125,12 +133,37 @@ public class Selection {
 		return !p.equals(current) && distance>=min_dst && distance<=max_dst;
 	}
 	
+	public void newTour(Tour tour){
+		Iterator<GameEntity> i = universe.gameEntities();
+		while (i.hasNext()){
+			GameEntity g = i.next();
+			if(g instanceof Units){
+				if(((Units)g).getUnitGroup().getCamp().equals(tour.getTour())){
+					((Units)g).setDisable(false);
+				}
+			}
+		}
+	}
 	public STATE get_current_state(){
 		return state;
 	}
 	
 	public void set_state(STATE s){
 		state = s;
+	}
+	
+	public Scenary foundScenary(Units u){
+		Iterator<GameEntity> it = universe.gameEntities();
+		Scenary scenary = null;
+		while(it.hasNext()){
+			GameEntity ge = it.next();
+			if(ge instanceof Scenary && ((Scenary)ge).getPos().equals(u.getPosition()))
+			{
+				scenary = ((Scenary)ge);
+				return scenary;
+			} 
+		}
+		return null;
 	}
 
 }

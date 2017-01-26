@@ -25,6 +25,7 @@ public abstract class Units extends ObservableAbstract<GameEntity> implements
 	protected boolean movable = true;
 	protected boolean isDisable = false;
 
+
 	Point position = new Point();
 	SpeedVector speedVector = SpeedVectorDefaultImpl.createNullVector();
 
@@ -96,6 +97,10 @@ public abstract class Units extends ObservableAbstract<GameEntity> implements
 	
 	public void setDisable(boolean isDisable) {
 		this.isDisable = isDisable;
+	}
+	
+	public boolean isDisable() {
+		return isDisable;
 	}
 
 }

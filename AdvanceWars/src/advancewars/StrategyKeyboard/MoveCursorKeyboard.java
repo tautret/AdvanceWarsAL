@@ -13,7 +13,7 @@ import gameframework.moves_rules.MoveStrategyKeyboard;
 public class MoveCursorKeyboard extends MoveStrategyKeyboard {
 	private Selection s;
 	private Cursor c;
-	private Tour t = new Tour("Blue");
+	private Tour t = new Tour("Red");
 	private final ObservableValue<Integer> day;
 	private boolean ok = true;
 	
@@ -42,6 +42,7 @@ public class MoveCursorKeyboard extends MoveStrategyKeyboard {
 				break;
 			case KeyEvent.VK_E:
 				t.newTour(day);
+				s.newTour(t);
 				break;
 			case KeyEvent.VK_W:
 				if (ok){

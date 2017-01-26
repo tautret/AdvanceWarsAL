@@ -103,7 +103,7 @@ public class GameLevelOne extends GameLevelDefaultImpl{
 		Units myUnit;
 		Point pos = new Point((RandomPositionX() * SPRITE_SIZE), RandomPositionY() * SPRITE_SIZE);
 		myUnit = new UnitJeep(canvas,name);
-		myUnit.createArmy(5);
+		myUnit.createArmy(10);
 		while(pos_unite.add(pos));
 		{
 			pos = new Point((RandomPositionX() * SPRITE_SIZE), RandomPositionY() * SPRITE_SIZE);
@@ -144,7 +144,7 @@ public class GameLevelOne extends GameLevelDefaultImpl{
 		universe.addGameEntity(myUnit);
 		
 		myUnit = new UnitLightTank(canvas,name);
-		myUnit.createArmy(5);
+		myUnit.createArmy(10);
 		while(pos_unite.add(pos));
 		{
 			pos = new Point((RandomPositionX() * SPRITE_SIZE), RandomPositionY() * SPRITE_SIZE);
@@ -154,7 +154,7 @@ public class GameLevelOne extends GameLevelDefaultImpl{
 		universe.addGameEntity(myUnit);
 		
 		myUnit = new UnitLightTank(canvas,name);
-		myUnit.createArmy(5);
+		myUnit.createArmy(10);
 		while(pos_unite.add(pos));
 		{
 			pos = new Point((RandomPositionX() * SPRITE_SIZE), RandomPositionY() * SPRITE_SIZE);
@@ -307,14 +307,52 @@ public class GameLevelOne extends GameLevelDefaultImpl{
 		
 
 		//Army Red
-		templateArmy("Red");
+//		templateArmy("Red");
+//		
+//		//Army Blue
+//		templateArmy("Blue");
 		
-		//Army Blue
-		templateArmy("Blue");
-		
-		
-		
-		
+		Units myUnit;
+		myUnit = new UnitLightInfantry(canvas,"Red");
+		myUnit.createArmy(10);
+		myUnit.setPosition(new Point(7 * SPRITE_SIZE, 13 * SPRITE_SIZE));
+		myUnit.addObserver(((AdvanceWarsDefaultImpl)g).currentItem);
+		universe.addGameEntity(myUnit);
+		myUnit = new UnitLightInfantry(canvas,"Red");
+		myUnit.createArmy(10);
+		myUnit.setPosition(new Point((7 * SPRITE_SIZE), 14 * SPRITE_SIZE));
+		myUnit.addObserver(((AdvanceWarsDefaultImpl)g).currentItem);
+		universe.addGameEntity(myUnit);
+		myUnit = new UnitLightInfantry(canvas,"Red");
+		myUnit.createArmy(10);
+		myUnit.setPosition(new Point((7 * SPRITE_SIZE), 11 * SPRITE_SIZE));
+		myUnit.addObserver(((AdvanceWarsDefaultImpl)g).currentItem);
+		universe.addGameEntity(myUnit);
+		myUnit = new UnitLightInfantry(canvas,"Red");
+		myUnit.createArmy(10);
+		myUnit.setPosition(new Point((7 * SPRITE_SIZE), 12 * SPRITE_SIZE));
+		myUnit.addObserver(((AdvanceWarsDefaultImpl)g).currentItem);
+		universe.addGameEntity(myUnit);
+		myUnit = new UnitHeavyInfantry(canvas,"Blue");
+		myUnit.createArmy(10);
+		myUnit.setPosition(new Point((8 * SPRITE_SIZE), 13 * SPRITE_SIZE));
+		myUnit.addObserver(((AdvanceWarsDefaultImpl)g).currentItem);
+		universe.addGameEntity(myUnit);
+		myUnit = new UnitLightInfantry(canvas,"Blue");
+		myUnit.createArmy(10);
+		myUnit.setPosition(new Point((8 * SPRITE_SIZE), 14 * SPRITE_SIZE));
+		myUnit.addObserver(((AdvanceWarsDefaultImpl)g).currentItem);
+		universe.addGameEntity(myUnit);
+		myUnit = new UnitJeep(canvas,"Blue");
+		myUnit.createArmy(10);
+		myUnit.setPosition(new Point((8 * SPRITE_SIZE), 11 * SPRITE_SIZE));
+		myUnit.addObserver(((AdvanceWarsDefaultImpl)g).currentItem);
+		universe.addGameEntity(myUnit);
+		myUnit = new UnitLightTank(canvas,"Blue");
+		myUnit.createArmy(10);
+		myUnit.setPosition(new Point((8 * SPRITE_SIZE), 12 * SPRITE_SIZE));
+		myUnit.addObserver(((AdvanceWarsDefaultImpl)g).currentItem);
+		universe.addGameEntity(myUnit);
 		
 		// Arm�e Rouge
 		// Ghost myGhost;
