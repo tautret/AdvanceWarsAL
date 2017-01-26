@@ -38,7 +38,7 @@ public class AdvanceWarsDefaultImpl implements Game, Observer{
 	protected ObservableValue<Integer> day[] = new ObservableValue[1];
 
 	// initialized before each level
-	protected ObservableValue<Boolean> endOfGame = null;
+	protected ObservableValue<Boolean> endOfGame = new ObservableValue<Boolean>(false);
 
 	private Frame f;
 
@@ -244,7 +244,7 @@ public class AdvanceWarsDefaultImpl implements Game, Observer{
 	public void update(Observable o, Object arg) {
 		if (o == endOfGame) {
 			if (endOfGame.getValue()) {
-				informationValue.setText("You win");
+				informationValue.setText("Finish");
 				currentPlayedLevel.interrupt();
 				currentPlayedLevel.end();
 			}

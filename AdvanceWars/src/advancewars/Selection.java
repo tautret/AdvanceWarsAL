@@ -17,6 +17,7 @@ import advancewars.units.Units;
 import gameframework.core.GameEntity;
 import gameframework.core.GameUniverse;
 import gameframework.core.Movable;
+import gameframework.core.ObservableValue;
 import gameframework.moves_rules.MoveBlocker;
 import observer_util.Observer;
 import soldier.core.UnitGroup;
@@ -27,17 +28,19 @@ public class Selection {
 	private Observer<GameEntity> observer;
 	private Set<Action> command;
 	private Canvas canvas;
+	private ObservableValue<Boolean> endGame;
 	
 	private GameEntity land = null;
 	private GameEntity unit = null;
 	private STATE state = STATE.WAITING;
 	
-	public Selection(Canvas c, GameUniverse universe, Observer<GameEntity> observer) {
+	public Selection(Canvas c, GameUniverse universe, Observer<GameEntity> observer, ObservableValue<Boolean> endGame) {
 		super();
 		this.canvas = c;
 		this.universe = universe;
 		this.observer = observer;
 		this.command = new HashSet<Action>();
+		this.endGame = endGame;
 	}
 	
 	public void unselect(){
@@ -125,7 +128,7 @@ public class Selection {
 					Scenary s1 = foundScenary(u1);
 					Scenary s2 = foundScenary(u2);
 					if(!g2.getCamp().equals(g1.getCamp())){
-						Attack m = new Attack(canvas, p.x,p.y,u1,u2,s1,s2,universe);
+						Attack m = new Attack(canvas, p.x,p.y,u1,u2,s1,s2,universe,endGame);
 						tmp.put(p, m);
 					}
 				}
