@@ -41,6 +41,7 @@ public class MoveCursorKeyboard extends MoveStrategyKeyboard {
 				speedVector.setDirection(new Point(0, 1));
 				break;
 			case KeyEvent.VK_E:
+				s.unselect();
 				t.newTour(day);
 				s.newTour(t);
 				break;

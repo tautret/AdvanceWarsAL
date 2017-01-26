@@ -25,6 +25,7 @@ public class Move extends Scenary implements Action{
 				u.setSpeedVector(new SpeedVectorDefaultImpl(new Point(x,y)));
 			}
 			public void run(){
+				Point src = u.getPosition();
 				try {
 					while (!u.getPosition().equals(dest)){
 						Point p = u.getPosition();
@@ -39,6 +40,9 @@ public class Move extends Scenary implements Action{
 						currentThread().sleep(20);
 					}
 					u.setSpeedVector(new SpeedVectorDefaultImpl(new Point(0,0)));
+					int distance = (int) (Math.abs(src.getX()-dest.x) + Math.abs(src.getY()-dest.y));
+					System.out.println(distance);
+					u.getUnitGroup().setMaxDeplacement(u.getUnitGroup().getMaxDeplacement()-(distance/32));
 				} catch (InterruptedException e) {}
 			}
 		};

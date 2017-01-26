@@ -1,12 +1,12 @@
 package advancewars.actions;
 
-import gameframework.core.GameUniverse;
-
 import java.awt.Canvas;
 
-import soldier.weapon.ScenaryShield;
 import advancewars.scenary.Scenary;
 import advancewars.units.Units;
+import gameframework.core.GameUniverse;
+import soldier.core.Weapon;
+import soldier.weapon.ScenaryShield;
 
 public class Attack extends Scenary implements Action {
 	private GameUniverse universe;
@@ -26,18 +26,19 @@ public class Attack extends Scenary implements Action {
 
 	@Override
 	public void execute() {
-		
+		Weapon w1 = s1.getBehavior();
+		Weapon w2 = s2.getBehavior();
 		if(u2.getUnitGroup().getNbSoldat() >= u1.getUnitGroup().getNbSoldat()){
-//			u1.getUnitGroup().addEquipment(s1.getBehavior());
-//			u2.getUnitGroup().addEquipment(s2.getBehavior());
+			//u1.getUnitGroup().addEquipment(w1);
+			//u2.getUnitGroup().addEquipment(w2);
 			u2.getUnitGroup().parry(u1.getUnitGroup().strike());
 			u1.getUnitGroup().parry(u2.getUnitGroup().strike());
-//			u1.getUnitGroup().removeEquipment(s1.getBehavior());
-//			u2.getUnitGroup().removeEquipment(s2.getBehavior());
+			//u1.getUnitGroup().removeEquipment(w1);
+			//u2.getUnitGroup().removeEquipment(w2);
 		} else {
-//			u2.getUnitGroup().addEquipment(s2.getBehavior());
+			//u2.getUnitGroup().addEquipment(w2);
 			u2.getUnitGroup().parry(u1.getUnitGroup().strike());
-//			u2.getUnitGroup().removeEquipment(s2.getBehavior());
+			//u2.getUnitGroup().removeEquipment(w2);
 		}
 		if(!u2.getUnitGroup().alive()){
 			universe.removeGameEntity(u2);
