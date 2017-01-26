@@ -24,6 +24,7 @@ public abstract class Units extends ObservableAbstract<GameEntity> implements
 	protected int rendering_size;
 	protected boolean movable = true;
 	protected boolean isDisable = false;
+	protected boolean alreadyMove = false;
 
 
 	Point position = new Point();
@@ -101,6 +102,14 @@ public abstract class Units extends ObservableAbstract<GameEntity> implements
 	
 	public boolean isDisable() {
 		return isDisable;
+	}
+
+	public boolean isAlreadyMove() {
+		return alreadyMove;
+	}
+
+	public void setAlreadyMove(boolean alreadyMove) {
+		this.alreadyMove = alreadyMove;
 	}
 
 }

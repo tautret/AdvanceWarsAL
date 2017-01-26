@@ -7,9 +7,11 @@ import gameframework.moves_rules.MoveBlocker;
 
 import java.awt.Canvas;
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import observer_util.Observer;
@@ -47,6 +49,25 @@ public class Selection {
 		}
 		command.clear();
 		state = STATE.WAITING;
+	}
+	
+	public void disableUnit(Point p, Tour t){
+		unselect();
+		p.x += Cursor.DECALAGE_X;
+		p.y += Cursor.DECALAGE_Y;
+		Iterator<GameEntity> i = universe.gameEntities();
+		while (i.hasNext()){
+			GameEntity g = i.next();
+			if (g instanceof Units){
+				Movable m = (Movable) g;
+				if (m.getPosition().equals(p)){
+					Units u = ((Units)g);
+					if(u.getUnitGroup().getCamp().equals(t.getTour()) && !u.isDisable() ){
+						u.setDisable(true);
+					}
+				}
+			}
+		}
 	}
 	
 	public void selectItem (Point p, Tour t){
@@ -89,7 +110,9 @@ public class Selection {
 			if (g instanceof Scenary && !(g instanceof MoveBlocker) && is_reachable(((Scenary) g).getPos())){
 				Point p = ((Scenary) g).getPosition();
 				Move m = new Move(canvas, p.x,p.y,(Units)unit,((Scenary) g).getPos());
-				tmp.put(p, m);
+				if(!((Units)unit).isAlreadyMove()){
+					tmp.put(p, m);
+				}
 			}
 			else if (g instanceof Units && is_attackable(((Units) g).getPosition())){
 				Point p = ((Units) g).getPosition();
@@ -162,6 +185,19 @@ public class Selection {
 			} 
 		}
 		return null;
+	}
+	
+	public boolean canNewTurn(Tour t){
+		Iterator<GameEntity> it = universe.gameEntities();
+		while(it.hasNext()){
+			GameEntity g = it.next();
+			if(g instanceof Units && ((Units)g).getUnitGroup().getCamp().equals(t.getTour())){
+				if(!((Units)g).isDisable()){
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
 }

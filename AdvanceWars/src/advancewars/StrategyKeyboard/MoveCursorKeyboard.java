@@ -42,8 +42,13 @@ public class MoveCursorKeyboard extends MoveStrategyKeyboard {
 				break;
 			case KeyEvent.VK_E:
 				s.unselect();
-				t.newTour(day);
-				s.newTour(t);
+				if(s.canNewTurn(t)){
+					t.newTour(day);
+					s.newTour(t);
+				}
+				break;
+			case KeyEvent.VK_D:
+				s.disableUnit((Point)c.getPosition().clone(),t);
 				break;
 			case KeyEvent.VK_W:
 				if (ok){

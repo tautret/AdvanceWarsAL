@@ -41,7 +41,6 @@ public class Move extends Scenary implements Action{
 					}
 					u.setSpeedVector(new SpeedVectorDefaultImpl(new Point(0,0)));
 					int distance = (int) (Math.abs(src.getX()-dest.x) + Math.abs(src.getY()-dest.y));
-					System.out.println(distance);
 					u.getUnitGroup().setMaxDeplacement(u.getUnitGroup().getMaxDeplacement()-(distance/32));
 				} catch (InterruptedException e) {}
 			}
@@ -52,6 +51,7 @@ public class Move extends Scenary implements Action{
 	@Override
 	public void execute() {
 		t.start();
+		u.setAlreadyMove(true);
 	}
 
 }
