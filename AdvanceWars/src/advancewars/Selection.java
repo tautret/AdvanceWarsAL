@@ -99,8 +99,6 @@ public class Selection {
 				UnitGroup g2 = u2.getUnitGroup();
 				Scenary s1 = foundScenary(u1);
 				Scenary s2 = foundScenary(u2);
-				System.out.println("s1 :" + s1.toString());
-				System.out.println("s2 :" + s2.toString());
 				if(!g2.getCamp().equals(g1.getCamp())){
 					Attack m = new Attack(canvas, p.x,p.y,u1,u2,s1,s2,universe);
 					tmp.put(p, m);

@@ -3,6 +3,7 @@ package advancewars.units;
 import java.awt.Canvas;
 
 import soldier.core.UnitGroup;
+import soldier.units.HeavyInfantry;
 import soldier.units.LightInfantry;
 
 public class UnitHeavyInfantry extends Units{
@@ -20,7 +21,7 @@ public class UnitHeavyInfantry extends Units{
 	
 	public void createArmy(int nb_unit){
 		for(int i = 0 ; i < nb_unit ; i ++){
-			heavyInfantryGroup.addUnit(new LightInfantry());
+			heavyInfantryGroup.addUnit(new HeavyInfantry());
 		}
 	}
 }

@@ -9,6 +9,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.concurrent.ThreadLocalRandom;
 
 import observer_util.ObservableAbstract;
 
@@ -76,7 +77,6 @@ public class UnitGroup extends ObservableAbstract<Unit>
 	@Override
 	public float parry(float force) {
 		float f = 0.f;
-		System.out.println(force);
 		Iterator<Unit> it = subUnits();
 		while (force > 0.f && it.hasNext()) {
 			Unit u = it.next();
@@ -95,7 +95,7 @@ public class UnitGroup extends ObservableAbstract<Unit>
 			if (u.alive())
 				sum += u.strike();
 		}
-		return sum;
+		return sum + ThreadLocalRandom.current().nextInt(0, 9);
 	}
 	
 	public int getNbSoldat(){

@@ -353,33 +353,5 @@ public class GameLevelOne extends GameLevelDefaultImpl{
 		myUnit.setPosition(new Point((8 * SPRITE_SIZE), 12 * SPRITE_SIZE));
 		myUnit.addObserver(((AdvanceWarsDefaultImpl)g).currentItem);
 		universe.addGameEntity(myUnit);
-		
-		// Arm�e Rouge
-		// Ghost myGhost;
-		// for (int t = 0; t < NUMBER_OF_GHOSTS; ++t) {
-		// GameMovableDriverDefaultImpl ghostDriv = new GhostMovableDriver();
-		// MoveStrategyRandom ranStr = new MoveStrategyRandom();
-		// ghostDriv.setStrategy(ranStr);
-		// ghostDriv.setmoveBlockerChecker(moveBlockerChecker);
-		// myGhost = new Ghost(canvas);
-		// myGhost.setDriver(ghostDriv);
-		// myGhost.setPosition(new Point(14 * SPRITE_SIZE, 15 * SPRITE_SIZE));
-		// universe.addGameEntity(myGhost);
-		// (overlapRules).addGhost(myGhost);
-		// }
-
-		// Arm�e Bleu
-		// Ghost myGhost;
-		// for (int t = 0; t < NUMBER_OF_GHOSTS; ++t) {
-		// GameMovableDriverDefaultImpl ghostDriv = new GhostMovableDriver();
-		// MoveStrategyRandom ranStr = new MoveStrategyRandom();
-		// ghostDriv.setStrategy(ranStr);
-		// ghostDriv.setmoveBlockerChecker(moveBlockerChecker);
-		// myGhost = new Ghost(canvas);
-		// myGhost.setDriver(ghostDriv);
-		// myGhost.setPosition(new Point(14 * SPRITE_SIZE, 15 * SPRITE_SIZE));
-		// universe.addGameEntity(myGhost);
-		// (overlapRules).addGhost(myGhost);
-		// }
 	}
 }

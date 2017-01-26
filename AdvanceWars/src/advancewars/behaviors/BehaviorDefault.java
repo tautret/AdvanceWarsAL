@@ -17,7 +17,7 @@ public class BehaviorDefault extends BehaviorSoldierStd{
 	}
 	
 	private float computeStrength(){
-		float res = force + ThreadLocalRandom.current().nextInt(0, 9);
+		float res = force;// + ThreadLocalRandom.current().nextInt(0,9);
 		res*=(this.healthPoints/10);
 		return res;
 	}

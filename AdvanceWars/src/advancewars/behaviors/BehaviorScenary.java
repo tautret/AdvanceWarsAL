@@ -14,8 +14,7 @@ public class BehaviorScenary extends BehaviorExtension{
 	
 	@Override
 	public float parry(float force) {
-		float effectiveReceivedForce = force
-				* ((200-(bonusValue*this.getHealthPoints()))/100);
+		float effectiveReceivedForce = force * (1-(bonusValue/10));
 		return super.parry(effectiveReceivedForce);
 	}
 
