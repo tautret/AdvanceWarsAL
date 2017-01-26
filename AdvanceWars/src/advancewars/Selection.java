@@ -161,6 +161,7 @@ public class Selection {
 			if(g instanceof Units){
 				if(((Units)g).getUnitGroup().getCamp().equals(tour.getTour())){
 					((Units)g).setDisable(false);
+					((Units)g).setAlreadyMove(false);
 				}
 			}
 		}
