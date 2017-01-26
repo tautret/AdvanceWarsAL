@@ -307,12 +307,12 @@ public class GameLevelOne extends GameLevelDefaultImpl{
 		
 
 		//Army Red
-//		templateArmy("Red");
+		templateArmy("Red");
 //		
 //		//Army Blue
-//		templateArmy("Blue");
+		templateArmy("Blue");
 		
-		Units myUnit;
+		/*Units myUnit;
 		myUnit = new UnitLightInfantry(canvas,"Red");
 		myUnit.createArmy(10);
 		myUnit.setPosition(new Point(7 * SPRITE_SIZE, 13 * SPRITE_SIZE));
@@ -352,6 +352,6 @@ public class GameLevelOne extends GameLevelDefaultImpl{
 		myUnit.createArmy(10);
 		myUnit.setPosition(new Point((8 * SPRITE_SIZE), 12 * SPRITE_SIZE));
 		myUnit.addObserver(((AdvanceWarsDefaultImpl)g).currentItem);
-		universe.addGameEntity(myUnit);
+		universe.addGameEntity(myUnit);*/
 	}
 }

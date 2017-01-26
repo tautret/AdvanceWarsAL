@@ -1,26 +1,25 @@
 package advancewars;
 
-import gameframework.core.GameEntity;
-import gameframework.core.GameUniverse;
-import gameframework.core.Movable;
-import gameframework.moves_rules.MoveBlocker;
-
 import java.awt.Canvas;
 import java.awt.Point;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-import observer_util.Observer;
-import soldier.core.UnitGroup;
 import advancewars.actions.Action;
 import advancewars.actions.Attack;
 import advancewars.actions.Move;
 import advancewars.scenary.Scenary;
 import advancewars.units.Units;
+import gameframework.core.GameEntity;
+import gameframework.core.GameUniverse;
+import gameframework.core.Movable;
+import gameframework.moves_rules.MoveBlocker;
+import observer_util.Observer;
+import soldier.core.UnitGroup;
 
 public class Selection {
 	public enum STATE {WAITING,READY,GO};
@@ -104,6 +103,7 @@ public class Selection {
 	private void fillCommandList(){
 		Iterator<GameEntity> i = universe.gameEntities();
 		HashMap<Point,Action> tmp = new HashMap<Point,Action>();
+		List<Point> units_pos = new LinkedList<Point>();
 		while (i.hasNext()){
 			GameEntity g = i.next();
 			
@@ -114,24 +114,31 @@ public class Selection {
 					tmp.put(p, m);
 				}
 			}
-			else if (g instanceof Units && is_attackable(((Units) g).getPosition())){
-				Point p = ((Units) g).getPosition();
+			else if (g instanceof Units){
 				Units u1 = ((Units)unit);
-				UnitGroup g1 = u1.getUnitGroup();
-				Units u2 = ((Units)g);
-				UnitGroup g2 = u2.getUnitGroup();
-				Scenary s1 = foundScenary(u1);
-				Scenary s2 = foundScenary(u2);
-				if(!g2.getCamp().equals(g1.getCamp())){
-					Attack m = new Attack(canvas, p.x,p.y,u1,u2,s1,s2,universe);
-					tmp.put(p, m);
+				Point p = ((Units) g).getPosition();
+				units_pos.add(p);
+				if(is_attackable(p)){
+					UnitGroup g1 = u1.getUnitGroup();
+					Units u2 = ((Units)g);
+					UnitGroup g2 = u2.getUnitGroup();
+					Scenary s1 = foundScenary(u1);
+					Scenary s2 = foundScenary(u2);
+					if(!g2.getCamp().equals(g1.getCamp())){
+						Attack m = new Attack(canvas, p.x,p.y,u1,u2,s1,s2,universe);
+						tmp.put(p, m);
+					}
 				}
 			}
 		}
 	
 		for (Action a : tmp.values()){
-			command.add(a);
-			universe.addGameEntity((GameEntity) a);
+			if (a instanceof Move && units_pos.contains(((Move) a).getPosition())){
+				
+			}else{
+				command.add(a);
+				universe.addGameEntity((GameEntity) a);
+			}
 		}
 	}
 	

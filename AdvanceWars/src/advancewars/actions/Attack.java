@@ -43,6 +43,9 @@ public class Attack extends Scenary implements Action {
 		if(!u2.getUnitGroup().alive()){
 			universe.removeGameEntity(u2);
 		}
+		if(!u1.getUnitGroup().alive()){
+			universe.removeGameEntity(u1);
+		}
 			u1.setDisable(true);
 	}
 
